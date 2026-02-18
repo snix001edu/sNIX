@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snix Fashion Store</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body { margin:0; font-family: Arial,sans-serif; }
+.header { display:flex; justify-content:space-between; padding:10px 20px; background:#fff; border-bottom:1px solid #ddd;}
+.logo { font-size:24px; font-weight:bold; }
+.cart { font-size:16px; }
+.nav { display:flex; background:#f8f8f8; padding:10px; }
+.nav a { margin:0 15px; text-decoration:none; color:#000; }
+.products-container { padding:20px; }
+.products-container .grid { display:flex; gap:20px; flex-wrap:wrap; }
+.product { width:250px; text-align:center; cursor:pointer; }
+.product img { width:100%; height:250px; object-fit:cover; }
+.footer { text-align:center; padding:15px; border-top:1px solid #ddd; }
+.banner img { width:100%; height:auto; margin-bottom:20px; }
+
+.modal {
+display:none;
+position:fixed;
+z-index:100;
+left:0; top:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.7);
+}
+.modal-content {
+background:#fff;
+margin:5% auto;
+padding:20px;
+width:90%;
+max-width:500px;
+border-radius:8px;
+position:relative;
+}
+.close {
+position:absolute;
+right:15px;
+top:10px;
+font-size:25px;
+cursor:pointer;
+}
+.modal img { width:100%; margin-bottom:15px; }
+.modal button {
+padding:10px 20px;
+background:black;
+color:white;
+border:none;
+cursor:pointer;
+margin:5px 0;
+}
+.modal button:hover {
+background:white;
+color:black;
+border:1px solid black;
+}
+
+.order-section {
+display:none;
+text-align:center;
+padding:20px;
+background:#f8f8f8;
+margin:20px;
+border-radius:8px;
+}
+.order-section input,
+.order-section textarea {
+padding:10px;
+width:90%;
+max-width:300px;
+margin:5px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+.order-section button {
+padding:10px 20px;
+background:black;
+color:white;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="logo">sNIX</div>
+<input type="text" placeholder="Search..." id="searchInput" onkeyup="searchProduct()">
+<div class="cart">Cart (0)</div>
+</header>
+
+<section class="banner">
+<img src="banner.jpg">
+</section>
+
+<nav class="nav">
+<a href="#">Men</a>
+<a href="#">Women</a>
+</nav>
+
+<section class="products-container">
+<h2>WildplayS</h2>
+<div class="grid">
+
+<div class="product" onclick="showProductDetail(
+  'Wildplay.jpg', 
+  'Wildplay', 
+  '₹499', 
+  'Power lively aura.', 
+  'Both Genders',
+  '30ml',
+  'Rose'
+)">
+<img src="wildplay.jpg">
+<h3>Wildplay</h3>
+<p>₹499</p>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Wildplay','₹499')">Order Now</button>
+</div>
+
+
+<div class="product" onclick="showProductDetail(
+  'Duchman.jpg', 
+  'Duchman', 
+  '₹399', 
+  'Power lively aura.', 
+  'Both Genders',
+  '30ml',
+  'Rose Marry'
+)">
+<img src="Duchman.jpg">
+<h3>Duchman</h3>
+<p>₹399</p>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Duchman','₹399')">Order Now</button>
+</div>
+
+
+<div class="product" onclick="showProductDetail(
+  'seduct.jpg', 
+  'Seduction Perfume', 
+  '₹799', 
+  'Romantic and Attractive Fragrance.', 
+  'Both Genders',
+  '100ml',
+  'Pineapple, Sweet, Attractive'
+)">
+<img src="seduct.jpg">
+<h3>Seduction Perfume</h3>
+<p>₹799</p>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Black Wild','₹649')">Order Now</button>
+</div>
+
+<div class="product" onclick="showProductDetail(
+  'blackwild.jpg', 
+  'Black Wild', 
+  '₹649', 
+  'Manly and Powerfull Aura.', 
+  'Both Genders',
+  '100ml',
+  'No flavour'
+)">
+<img src="blackwild.jpg">
+<h3>black wild</h3>
+<p>₹649</p>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Wild Black','₹649')">Order Now</button>
+</div>
+
+
+
+</div>
+</section>
+
+<div id="productDetailModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeProductDetail()">&times;</span>
+<img id="detailImage">
+<h2 id="detailName"></h2>
+<p id="detailPrice"></p>
+<p id="detailDesc"></p>
+<p id="detailGender"></p>
+<p id="detailML"></p>
+<p id="detailFragrance"></p>
+<button onclick="openOrderFromDetail()">Order Now</button>
+</div>
+</div>
+
+<div id="orderMethodModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeOrderMethod()">&times;</span>
+<h2>Choose Order Method</h2>
+<button id="whatsappBtn">Order By WhatsApp</button>
+<button id="instagramBtn">Order By Instagram</button>
+<button id="webOrderBtn">Order on Website not working</button>
+</div>
+</div>
+
+<section class="order-section" id="directOrderForm">
+<h2>Place Your Order</h2>
+<form id="orderForm" onsubmit="submitOrder(event)">
+<input type="text" id="orderName" placeholder="Your Name" required><br>
+<input type="email" id="orderEmail" placeholder="Your Email" required><br>
+<input type="text" id="orderPhone" placeholder="Mobile Number" required><br>
+<textarea id="orderAddress" placeholder="Full Address" required></textarea><br>
+<input type="text" id="orderProduct" readonly><br>
+<input type="hidden" id="orderPrice">
+<button type="submit">Submit Order</button>
+</form>
+<p id="orderMsg" style="color:green;"></p>
+</section>
+
+<footer class="footer">
+<p>© 2026 Snix – All Rights Reserved</p>
+</footer>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+let currentProduct="";
+let currentPrice="";
+
+function showProductDetail(image, name, price, desc, gender, ml, fragrance){
+    document.getElementById("detailImage").src = image;
+    document.getElementById("detailName").innerText = name;
+    document.getElementById("detailPrice").innerText = price;
+    document.getElementById("detailDesc").innerText = desc;
+    document.getElementById("detailGender").innerText = "Suitable for: " + gender;
+    document.getElementById("detailML").innerText = "Volume: " + ml;
+    document.getElementById("detailFragrance").innerText = "Fragrance Type: " + fragrance;
+    currentProduct = name;
+    currentPrice = price;
+    document.getElementById("productDetailModal").style.display = "block";
+}
+
+function closeProductDetail(){
+document.getElementById("productDetailModal").style.display="none";
+}
+
+function openOrderFromDetail(){
+closeProductDetail();
+chooseOrderMethod(currentProduct,currentPrice);
+}
+
+function chooseOrderMethod(product,price){
+currentProduct=product;
+currentPrice=price;
+document.getElementById("orderMethodModal").style.display="block";
+
+document.getElementById("whatsappBtn").onclick=function(){
+let message=`New Order - Snix Store\nProduct: ${currentProduct}\nPrice: ${currentPrice}\nName:\nAddress:\nPhone:`;
+let url="https://wa.me/919319942411?text="+encodeURIComponent(message);
+window.open(url,"_blank");
+}
+
+document.getElementById("instagramBtn").onclick=function(){
+let message=`Hello Snix Store,\nI want to order:\nProduct: ${currentProduct}\nPrice: ${currentPrice}`;
+let instagramURL="https://instagram.com/riseup003";
+window.open(instagramURL,"_blank");
+alert("Please send this message on Instagram:\n\n"+message);
+}
+
+document.getElementById("webOrderBtn").onclick=function(){
+document.getElementById("directOrderForm").style.display="block";
+document.getElementById("orderProduct").value=currentProduct;
+document.getElementById("orderPrice").value=currentPrice;
+document.getElementById("orderMethodModal").style.display="none";
+window.scrollTo(0,document.getElementById("directOrderForm").offsetTop);
+}
+}
+
+function closeOrderMethod(){
+document.getElementById("orderMethodModal").style.display="none";
+}
+
+function searchProduct(){
+let input=document.getElementById("searchInput").value.toLowerCase();
+let products=document.getElementsByClassName("product");
+for(let i=0;i<products.length;i++){
+let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+products[i].style.display=name.includes(input)?"block":"none";
+}
+}
+
+function submitOrder(event){
+event.preventDefault();
+document.getElementById("orderMsg").innerText="Order Submitted!";
+document.getElementById("orderForm").reset();
+document.getElementById("directOrderForm").style.display="none";
+}
+</script>
+
+</body>
+</html>
