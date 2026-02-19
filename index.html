@@ -194,7 +194,7 @@ border-radius:5px;
 <h2>Choose Order Method</h2>
 <button id="whatsappBtn">Order By WhatsApp</button>
 <button id="instagramBtn">Order By Instagram</button>
-<button id="webOrderBtn">Order on Website not working</button>
+<button id="webOrderBtn">Order on Website</button>
 </div>
 </div>
 
@@ -202,7 +202,6 @@ border-radius:5px;
 <h2>Place Your Order</h2>
 <form id="orderForm" onsubmit="submitOrder(event)">
 <input type="text" id="orderName" placeholder="Your Name" required><br>
-<input type="email" id="orderEmail" placeholder="Your Email" required><br>
 <input type="text" id="orderPhone" placeholder="Mobile Number" required><br>
 <textarea id="orderAddress" placeholder="Full Address" required></textarea><br>
 <input type="text" id="orderProduct" readonly><br>
@@ -218,7 +217,7 @@ border-radius:5px;
 
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-emailjs.init("YOUR_PUBLIC_KEY");
+emailjs.init("n8YBL-yF6RSutJjRU"); // Your public key
 
 let currentProduct="";
 let currentPrice="";
@@ -237,70 +236,76 @@ function showProductDetail(image, name, price, desc, gender, ml, fragrance){
 }
 
 function closeProductDetail(){
-document.getElementById("productDetailModal").style.display="none";
+    document.getElementById("productDetailModal").style.display="none";
 }
 
 function openOrderFromDetail(){
-closeProductDetail();
-chooseOrderMethod(currentProduct,currentPrice);
+    closeProductDetail();
+    chooseOrderMethod(currentProduct,currentPrice);
 }
 
 function chooseOrderMethod(product,price){
-currentProduct=product;
-currentPrice=price;
-document.getElementById("orderMethodModal").style.display="block";
+    currentProduct=product;
+    currentPrice=price;
+    document.getElementById("orderMethodModal").style.display="block";
 
-document.getElementById("whatsappBtn").onclick=function(){
-let message=`New Order - Snix Store\nProduct: ${currentProduct}\nPrice: ${currentPrice}\nName:\nAddress:\nPhone:`;
-let url="https://wa.me/919319942411?text="+encodeURIComponent(message);
-window.open(url,"_blank");
-}
+    document.getElementById("whatsappBtn").onclick=function(){
+        let message=`New Order - Snix Store\nProduct: ${currentProduct}\nPrice: ${currentPrice}\nName:\nAddress:\nPhone:`;
+        let url="https://wa.me/919319942411?text="+encodeURIComponent(message);
+        window.open(url,"_blank");
+    }
 
-document.getElementById("instagramBtn").onclick=function(){
-let message=`Hello Snix Store,\nI want to order:\nProduct: ${currentProduct}\nPrice: ${currentPrice}`;
-let instagramURL="https://instagram.com/riseup003";
-window.open(instagramURL,"_blank");
-alert("Please send this message on Instagram:\n\n"+message);
-}
+    document.getElementById("instagramBtn").onclick=function(){
+        let message=`Hello Snix Store,\nI want to order:\nProduct: ${currentProduct}\nPrice: ${currentPrice}`;
+        let instagramURL="https://instagram.com/riseup003";
+        window.open(instagramURL,"_blank");
+        alert("Please send this message on Instagram:\n\n"+message);
+    }
 
-document.getElementById("webOrderBtn").onclick=function(){
-document.getElementById("directOrderForm").style.display="block";
-document.getElementById("orderProduct").value=currentProduct;
-document.getElementById("orderPrice").value=currentPrice;
-document.getElementById("orderMethodModal").style.display="none";
-window.scrollTo(0,document.getElementById("directOrderForm").offsetTop);
-}
+    document.getElementById("webOrderBtn").onclick=function(){
+        document.getElementById("directOrderForm").style.display="block";
+        document.getElementById("orderProduct").value=currentProduct;
+        document.getElementById("orderPrice").value=currentPrice;
+        document.getElementById("orderMethodModal").style.display="none";
+        window.scrollTo(0,document.getElementById("directOrderForm").offsetTop);
+    }
 }
 
 function closeOrderMethod(){
-document.getElementById("orderMethodModal").style.display="none";
+    document.getElementById("orderMethodModal").style.display="none";
 }
 
 function searchProduct(){
-let input=document.getElementById("searchInput").value.toLowerCase();
-let products=document.getElementsByClassName("product");
-for(let i=0;i<products.length;i++){
-let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-products[i].style.display=name.includes(input)?"block":"none";
-}
+    let input=document.getElementById("searchInput").value.toLowerCase();
+    let products=document.getElementsByClassName("product");
+    for(let i=0;i<products.length;i++){
+        let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        products[i].style.display=name.includes(input)?"block":"none";
+    }
 }
 
 function submitOrder(event){
-event.preventDefault();
-document.getElementById("orderMsg").innerText="Order Submitted!";
-document.getElementById("orderForm").reset();
-document.getElementById("directOrderForm").style.display="none";
+    event.preventDefault();
+
+    const orderData = {
+        product: currentProduct,
+        price: currentPrice,
+        name: document.getElementById("orderName").value,
+        phone: document.getElementById("orderPhone").value,
+        address: document.getElementById("orderAddress").value
+    };
+
+    emailjs.send("service_hdqqtci","template_8f0qzq4", orderData)
+    .then(function(response) {
+        document.getElementById("orderMsg").innerText="Order Submitted Successfully!";
+        document.getElementById("orderForm").reset();
+        document.getElementById("directOrderForm").style.display="none";
+    }, function(error) {
+        alert("Failed to send order. Please try again.");
+        console.log(error);
+    });
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
