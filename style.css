@@ -1,8 +1,8 @@
+
 /* ===== BODY ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: black;
 }
 
 /* ===== HEADER ===== */
@@ -98,18 +98,15 @@ body {
     margin-bottom: 25px;
 }
 
-/* Grid container for products */
 .grid {
     display: flex;
-    flex-wrap: wrap;       /* multiple rows */
-    gap: 20px;             /* spacing between products */
-    justify-content: flex-start;
+    justify-content: flex-start;   /* LEFT ALIGN */
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
-/* Individual product styling */
 .product {
-    flex: 1 1 calc(25% - 20px); /* 4 per row desktop */
-    max-width: calc(25% - 20px);
+    width: 250px;
     text-align: center;
     border: 1px solid #eee;
     padding: 15px;
@@ -160,11 +157,9 @@ body {
     border-top: 1px solid #ddd;
     margin-top: 40px;
 }
-
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 
-    /* Header stacked */
     .header {
         flex-direction: column;
         gap: 10px;
@@ -175,13 +170,11 @@ body {
         width: 90%;
     }
 
-    /* Navigation stacked */
     .nav {
         flex-direction: column;
         align-items: center;
     }
 
-    /* Hero adjustments */
     .hero {
         height: 250px;
         text-align: center;
@@ -192,24 +185,28 @@ body {
         padding-left: 0;
     }
 
-    /* Products: 2 per row on tablet/mobile */
-    .product {
-        flex: 1 1 calc(50% - 15px);
-        max-width: calc(50% - 15px);
+    .grid {
+        justify-content: center;
     }
-}
 
-@media (max-width: 480px) {
-    /* Very small phones: 1 per row */
     .product {
-        flex: 1 1 100%;
-        max-width: 100%;
+        width: 90%;
     }
-}
 
-/* Images fully responsive */
+}
+body {
+    background: black;
+}
+@media (max-width: 768px) {
+   body {
+      background: black;
+   }
+}
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
+
+
+
