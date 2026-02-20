@@ -292,7 +292,9 @@ Phone:
 🙏 THANK YOU FOR SHOPPING WITH US!
 Your order will be delivered soon.`;
 }
-
+let url = "https://wa.me/919319942415?text=" + encodeURIComponent(message);
+window.open(url, "_blank"); 
+  
 document.getElementById("instagramBtn").onclick=function(){
 let message=`Hello Snix Store,\nI want to order:\nProduct: ${currentProduct}\nPrice: ${currentPrice}`;
 let instagramURL="https://instagram.com/riseup003";
@@ -332,6 +334,7 @@ document.getElementById("directOrderForm").style.display="none";
 
 </body>
 </html>
+
 
 
 
