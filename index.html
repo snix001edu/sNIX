@@ -34,7 +34,7 @@ margin:5% auto;
 padding:20px;
 width:90%;
 max-width:500px;
-border-radius:8px;
+b-radius:8px;
 position:relative;
 }
 .close {
@@ -49,40 +49,40 @@ cursor:pointer;
 padding:10px 20px;
 background:black;
 color:white;
-border:none;
+b:none;
 cursor:pointer;
 margin:5px 0;
 }
 .modal button:hover {
 background:white;
 color:black;
-border:1px solid black;
+b:1px solid black;
 }
 
-.order-section {
+.-section {
 display:none;
 text-align:center;
 padding:20px;
 background:#f8f8f8;
 margin:20px;
-border-radius:8px;
+b-radius:8px;
 }
-.order-section input,
-.order-section textarea {
+.-section input,
+.-section textarea {
 padding:10px;
 width:90%;
 max-width:300px;
 margin:5px 0;
-border:1px solid #ccc;
-border-radius:5px;
+b:1px solid #ccc;
+b-radius:5px;
 }
-.order-section button {
+.-section button {
 padding:10px 20px;
 background:black;
 color:white;
-border:none;
+b:none;
 cursor:pointer;
-border-radius:5px;
+b-radius:5px;
 }
 </style>
 </head>
@@ -119,7 +119,7 @@ border-radius:5px;
 <img src="wild.jpg">
 <h3>Wildplay</h3>
 <p>₹499</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Wildplay','₹499')">Order Now</button>
+<button onclick="event.stopPropagation(); chooseMethod('Wildplay','₹499')"> Now</button>
 </div>
 
 
@@ -135,7 +135,7 @@ border-radius:5px;
 <img src="duchness.jpg">
 <h3>duchman</h3>
 <p>₹399</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Duchman Beast','₹399')">Order Now</button>
+<button onclick="event.stopPropagation(); chooseMethod('Duchman Beast','₹399')"> Now</button>
 </div>
 
 
@@ -151,7 +151,7 @@ border-radius:5px;
 <img src="seduct.jpg">
 <h3>Seduction Perfume</h3>
 <p>₹799</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Black Wild','₹649')">Order Now</button>
+<button onclick="event.stopPropagation(); chooseMethod('Black Wild','₹649')"> Now</button>
 </div>
 
   <div class="product" onclick="showProductDetail(
@@ -166,7 +166,7 @@ border-radius:5px;
 <img src="jaguar.jpg">
 <h3>Jaguar</h3>
 <p>₹4999</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Jaguar','₹4999')">Order Out Of Stock</button>
+<button onclick="event.stopPropagation(); chooseMethod('Jaguar','₹4999')"> Out Of Stock</button>
 </div>
 
   
@@ -182,7 +182,7 @@ border-radius:5px;
 <img src="blackwild.jpg">
 <h3>black wild</h3>
 <p>₹649</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Wild Black','₹649')">Order Now</button>
+<button onclick="event.stopPropagation(); chooseMethod('Wild Black','₹649')"> Now</button>
 </div>
 
 <div class="product" onclick="showProductDetail(
@@ -197,7 +197,7 @@ border-radius:5px;
 <img src="tomford.jpg">
 <h3>Tom Ford</h3>
 <p>₹6599</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Tom Ford','₹6599')">Order Out Of Stock</button>
+<button onclick="event.stopPropagation(); chooseMethod('Tom Ford','₹6599')"> Out Of Stock</button>
 </div>
 
 </div>
@@ -213,16 +213,16 @@ border-radius:5px;
 <p id="detailGender"></p>
 <p id="detailML"></p>
 <p id="detailFragrance"></p>
-<button onclick="openOrderFromDetail()">Order Now</button>
+<button onclick="openFromDetail()"> Now</button>
 </div>
 </div>
 
-<div id="orderMethodModal" class="modal">
+<div id="MethodModal" class="modal">
 <div class="modal-content">
-<span class="close" onclick="closeOrderMethod()">&times;</span>
-<h2>Choose Order Method</h2>
-<button id="whatsappBtn">Order By WhatsApp</button>
-<button id="webOrderBtn">Order on Website not working</button>
+<span class="close" onclick="closeMethod()">&times;</span>
+<h2>Choose  Method</h2>
+<button id="whatsappBtn"> By WhatsApp</button>
+<button id="webBtn">Order on Website not working</button>
 </div>
 </div>
 
@@ -282,7 +282,7 @@ function chooseOrderMethod(product, price) {
 
     // WhatsApp Button
     document.getElementById("whatsappBtn").onclick = function() {
-        let message = `🛒 *Product:* ${currentProduct}\n*Price:* ${currentPrice}\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\n🙏 THANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.`;
+        let message = ` *Product:* ${currentProduct}\n*Price:* ${currentPrice}\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\n THANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.`;
         let url = "https://wa.me/919319942415?text=" + encodeURIComponent(message);
         window.open(url, "_blank");
     }
@@ -332,6 +332,7 @@ document.getElementById("directOrderForm").style.display="none";
 
 </body>
 </html>
+
 
 
 
