@@ -34,7 +34,7 @@ margin:5% auto;
 padding:20px;
 width:90%;
 max-width:500px;
-b-radius:8px;
+border-radius:8px;
 position:relative;
 }
 .close {
@@ -49,40 +49,40 @@ cursor:pointer;
 padding:10px 20px;
 background:black;
 color:white;
-b:none;
+border:none;
 cursor:pointer;
 margin:5px 0;
 }
 .modal button:hover {
 background:white;
 color:black;
-b:1px solid black;
+border:1px solid black;
 }
 
-.-section {
+.order-section {
 display:none;
 text-align:center;
 padding:20px;
 background:#f8f8f8;
 margin:20px;
-b-radius:8px;
+border-radius:8px;
 }
-.-section input,
-.-section textarea {
+.order-section input,
+.order-section textarea {
 padding:10px;
 width:90%;
 max-width:300px;
 margin:5px 0;
-b:1px solid #ccc;
-b-radius:5px;
+border:1px solid #ccc;
+border-radius:5px;
 }
-.-section button {
+.order-section button {
 padding:10px 20px;
 background:black;
 color:white;
-b:none;
+border:none;
 cursor:pointer;
-b-radius:5px;
+border-radius:5px;
 }
 </style>
 </head>
@@ -107,97 +107,46 @@ b-radius:5px;
 <h2>WildplayS</h2>
 <div class="grid">
 
-<div class="product" onclick="showProductDetail(
-  'wild.jpg', 
-  'Wildplay', 
-  '₹499', 
-  'Power lively aura.', 
-  'Both Genders',
-  '30ml',
-  'Rose'
-)">
+<div class="product" onclick="showProductDetail('wild.jpg','Wildplay','₹499','Power lively aura.','Both Genders','30ml','Rose')">
 <img src="wild.jpg">
 <h3>Wildplay</h3>
 <p>₹499</p>
-<button onclick="event.stopPropagation(); chooseMethod('Wildplay','₹499')"> Now</button>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Wildplay','₹499')">Order Now</button>
 </div>
 
-
-<div class="product" onclick="showProductDetail(
-  'duchness.jpg', 
-  'Duchman', 
-  '₹399', 
-  'Power lively aura.', 
-  'Both Genders',
-  '30ml',
-  'Rose Marry'
-)">
+<div class="product" onclick="showProductDetail('duchness.jpg','Duchman','₹399','Power lively aura.','Both Genders','30ml','Rose Marry')">
 <img src="duchness.jpg">
-<h3>duchman</h3>
+<h3>Duchman</h3>
 <p>₹399</p>
-<button onclick="event.stopPropagation(); chooseMethod('Duchman Beast','₹399')"> Now</button>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Duchman Beast','₹399')">Order Now</button>
 </div>
 
-
-<div class="product" onclick="showProductDetail(
-  'seduct.jpg', 
-  'Seduction Perfume', 
-  '₹799', 
-  'Romantic and Attractive Fragrance.', 
-  'Both Genders',
-  '100ml',
-  'Pineapple, Sweet, Attractive'
-)">
+<div class="product" onclick="showProductDetail('seduct.jpg','Seduction Perfume','₹799','Romantic and Attractive Fragrance.','Both Genders','100ml','Pineapple, Sweet, Attractive')">
 <img src="seduct.jpg">
 <h3>Seduction Perfume</h3>
 <p>₹799</p>
-<button onclick="event.stopPropagation(); chooseMethod('Black Wild','₹649')"> Now</button>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Black Wild','₹649')">Order Now</button>
 </div>
 
-  <div class="product" onclick="showProductDetail(
-  'jaguar.jpg', 
-  'Jaguar', 
-  '₹4999', 
-  'Power lively aura.', 
-  'Both Genders',
-  '100ml',
-  'Earthy & Woody'
-)">
+<div class="product" onclick="showProductDetail('jaguar.jpg','Jaguar','₹4999','Power lively aura.','Both Genders','100ml','Earthy & Woody')">
 <img src="jaguar.jpg">
 <h3>Jaguar</h3>
 <p>₹4999</p>
-<button onclick="event.stopPropagation(); chooseMethod('Jaguar','₹4999')"> Out Of Stock</button>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Jaguar','₹4999')">Out Of Stock</button>
 </div>
 
-  
-<div class="product" onclick="showProductDetail(
-  'blackwild.jpg', 
-  'Black Wild', 
-  '₹649', 
-  'Manly and Powerfull Aura.', 
-  'Both Genders',
-  '100ml',
-  'No flavour'
-)">
+<div class="product" onclick="showProductDetail('blackwild.jpg','Black Wild','₹649','Manly and Powerful Aura.','Both Genders','100ml','No flavour')">
 <img src="blackwild.jpg">
-<h3>black wild</h3>
+<h3>Black Wild</h3>
 <p>₹649</p>
-<button onclick="event.stopPropagation(); chooseMethod('Wild Black','₹649')"> Now</button>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Wild Black','₹649')">Order Now</button>
 </div>
 
-<div class="product" onclick="showProductDetail(
-  'tomford.jpg', 
-  'Tom Ford', 
-  '₹6599', 
-  'Power lively aura.', 
-  'Both Genders',
-  '100ml',
-  'Earthy luxirius'
-)">
+<div class="product" onclick="showProductDetail('tomford.jpg','Tom Ford','₹6599','Power lively aura.','Both Genders','100ml','Earthy luxurious')">
 <img src="tomford.jpg">
 <h3>Tom Ford</h3>
 <p>₹6599</p>
-<button onclick="event.stopPropagation(); chooseMethod('Tom Ford','₹6599')"> Out Of Stock</button>
+<button onclick="event.stopPropagation(); chooseOrderMethod('Tom Ford','₹6599')">Out Of Stock</button>
 </div>
 
 </div>
@@ -213,16 +162,16 @@ b-radius:5px;
 <p id="detailGender"></p>
 <p id="detailML"></p>
 <p id="detailFragrance"></p>
-<button onclick="openFromDetail()"> Now</button>
+<button onclick="openOrderFromDetail()">Order Now</button>
 </div>
 </div>
 
-<div id="MethodModal" class="modal">
+<div id="orderMethodModal" class="modal">
 <div class="modal-content">
-<span class="close" onclick="closeMethod()">&times;</span>
-<h2>Choose  Method</h2>
-<button id="whatsappBtn"> By WhatsApp</button>
-<button id="webBtn">Order on Website not working</button>
+<span class="close" onclick="closeOrderMethod()">&times;</span>
+<h2>Choose Order Method</h2>
+<button id="whatsappBtn">Order By WhatsApp</button>
+<button id="webOrderBtn">Order on Website</button>
 </div>
 </div>
 
@@ -244,10 +193,7 @@ b-radius:5px;
 <p>© 2026 Snix – All Rights Reserved</p>
 </footer>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-emailjs.init("YOUR_PUBLIC_KEY");
-
 let currentProduct="";
 let currentPrice="";
 
@@ -265,96 +211,54 @@ function showProductDetail(image, name, price, desc, gender, ml, fragrance){
 }
 
 function closeProductDetail(){
-document.getElementById("productDetailModal").style.display="none";
+    document.getElementById("productDetailModal").style.display="none";
 }
 
 function openOrderFromDetail(){
-closeProductDetail();
-chooseOrderMethod(currentProduct,currentPrice);
+    closeProductDetail();
+    chooseOrderMethod(currentProduct,currentPrice);
 }
-function chooseOrderMethod(product, price) {
+
+function chooseOrderMethod(product, price){
     currentProduct = product;
     currentPrice = price;
-
-    // Show modal
     document.getElementById("orderMethodModal").style.display = "block";
 
-    // WhatsApp Button
     document.getElementById("whatsappBtn").onclick = function() {
-        let message = `🛒 *Product:* ${currentProduct}\n*Price:* ${currentPrice}\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\n🙏 THANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.`;
+        let message = "*Product:* " + currentProduct + "\n*Price:* " + currentPrice + "\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\nTHANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.";
         let url = "https://wa.me/919319942415?text=" + encodeURIComponent(message);
-        window.open(url, "_blank");
+        window.open(url,"_blank");
     }
 
-    // Instagram Button
-    let instagramBtn = document.getElementById("instagramBtn");
-    if(instagramBtn) {  // check if exists
-        instagramBtn.onclick = function(){
-            let message = `Hello Snix Store,\nI want to order:\nProduct: ${currentProduct}\nPrice: ${currentPrice}`;
-            let instagramURL = "https://instagram.com/riseup003";
-            window.open(instagramURL,"_blank");
-            alert("Please send this message on Instagram:\n\n"+message);
-        }
-    }
-
-    // Website order form
-    document.getElementById("webOrderBtn").onclick = function() {
+    document.getElementById("webOrderBtn").onclick = function(){
         document.getElementById("directOrderForm").style.display = "block";
         document.getElementById("orderProduct").value = currentProduct;
         document.getElementById("orderPrice").value = currentPrice;
-        document.getElementById("orderMethodModal").style.display = "none";
-        window.scrollTo(0, document.getElementById("directOrderForm").offsetTop);
+        document.getElementById("orderMethodModal").style.display="none";
+        window.scrollTo(0,document.getElementById("directOrderForm").offsetTop);
     }
 }
 
-
-
 function closeOrderMethod(){
-document.getElementById("orderMethodModal").style.display="none";
+    document.getElementById("orderMethodModal").style.display="none";
 }
 
 function searchProduct(){
-let input=document.getElementById("searchInput").value.toLowerCase();
-let products=document.getElementsByClassName("product");
-for(let i=0;i<products.length;i++){
-let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-products[i].style.display=name.includes(input)?"block":"none";
-}
+    let input=document.getElementById("searchInput").value.toLowerCase();
+    let products=document.getElementsByClassName("product");
+    for(let i=0;i<products.length;i++){
+        let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        products[i].style.display=name.includes(input)?"block":"none";
+    }
 }
 
 function submitOrder(event){
-event.preventDefault();
-document.getElementById("orderMsg").innerText="Order Submitted!";
-document.getElementById("orderForm").reset();
-document.getElementById("directOrderForm").style.display="none";
+    event.preventDefault();
+    document.getElementById("orderMsg").innerText="Order Submitted!";
+    document.getElementById("orderForm").reset();
+    document.getElementById("directOrderForm").style.display="none";
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
