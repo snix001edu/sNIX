@@ -282,7 +282,7 @@ function chooseOrderMethod(product, price) {
 
     // WhatsApp Button
     document.getElementById("whatsappBtn").onclick = function() {
-        let message = ` *Product:* ${currentProduct}\n*Price:* ${currentPrice}\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\n THANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.`;
+        let message = `🛒 *Product:* ${currentProduct}\n*Price:* ${currentPrice}\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\n🙏 THANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.`;
         let url = "https://wa.me/919319942415?text=" + encodeURIComponent(message);
         window.open(url, "_blank");
     }
