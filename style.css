@@ -2,6 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: black;
 }
 
 /* ===== HEADER ===== */
@@ -99,7 +100,7 @@ body {
 
 .grid {
     display: flex;
-    justify-content: flex-start;   /* LEFT ALIGN */
+    justify-content: flex-start;
     gap: 25px;
     flex-wrap: wrap;
 }
@@ -112,6 +113,7 @@ body {
     border-radius: 6px;
     transition: 0.3s;
     background: #fff;
+    box-sizing: border-box;
 }
 
 .product:hover {
@@ -156,6 +158,7 @@ body {
     border-top: 1px solid #ddd;
     margin-top: 40px;
 }
+
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 
@@ -185,26 +188,18 @@ body {
     }
 
     .grid {
-        justify-content: center;
+        justify-content: space-between;
     }
 
+    /* 🔥 MAIN FIX */
     .product {
-        width: 90%;
+        width: 48%;
     }
 
 }
-body {
-    background: black;
-}
-@media (max-width: 768px) {
-   body {
-      background: white;
-   }
-}
+
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
-
-
