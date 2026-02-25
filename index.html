@@ -3,276 +3,2712 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snix Fashion Store</title>
+<title>Snix Perfume Store | Luxury Fragrances</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-body { margin:0; font-family: Arial,sans-serif; }
-.header { display:flex; justify-content:space-between; padding:10px 20px; background:#fff; border-bottom:1px solid #ddd;}
-.logo { font-size:24px; font-weight:bold; }
-.cart { font-size:16px; }
-.nav { display:flex; background:#f8f8f8; padding:10px; }
-.nav a { margin:0 15px; text-decoration:none; color:#000; }
-.products-container { padding:20px; }
-.products-container .grid { display:flex; gap:20px; flex-wrap:wrap; }
-.product { width:250px; text-align:center; cursor:pointer; }
-.product img { width:100%; height:250px; object-fit:cover; }
-.footer { text-align:center; padding:15px; border-top:1px solid #ddd; }
-.banner img { width:100%; height:auto; margin-bottom:20px; }
+/* ============================================
+   SNIX PERFUME STORE - PROFESSIONAL CSS
+   ============================================ */
 
-.modal {
-display:none;
-position:fixed;
-z-index:100;
-left:0; top:0;
-width:100%; height:100%;
-background:rgba(0,0,0,0.7);
-}
-.modal-content {
-background:#fff;
-margin:5% auto;
-padding:20px;
-width:90%;
-max-width:500px;
-border-radius:8px;
-position:relative;
-}
-.close {
-position:absolute;
-right:15px;
-top:10px;
-font-size:25px;
-cursor:pointer;
-}
-.modal img { width:100%; margin-bottom:15px; }
-.modal button {
-padding:10px 20px;
-background:black;
-color:white;
-border:none;
-cursor:pointer;
-margin:5px 0;
-}
-.modal button:hover {
-background:white;
-color:black;
-border:1px solid black;
+/* ===== CSS VARIABLES ===== */
+:root {
+    --primary-color: #1a1a1a;
+    --accent-color: #c9a962;
+    --accent-hover: #e5c585;
+    --text-dark: #2d2d2d;
+    --text-light: #666666;
+    --text-muted: #999999;
+    --white: #ffffff;
+    --off-white: #f9f9f9;
+    --light-gray: #f5f5f5;
+    --border-color: #e0e0e0;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-strong: 0 15px 50px rgba(0, 0, 0, 0.15);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Montserrat', 'Segoe UI', Arial, sans-serif;
 }
 
-.order-section {
-display:none;
-text-align:center;
-padding:20px;
-background:#f8f8f8;
-margin:20px;
-border-radius:8px;
+/* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.order-section input,
-.order-section textarea {
-padding:10px;
-width:90%;
-max-width:300px;
-margin:5px 0;
-border:1px solid #ccc;
-border-radius:5px;
+
+html {
+    scroll-behavior: smooth;
 }
-.order-section button {
-padding:10px 20px;
-background:black;
-color:white;
-border:none;
-cursor:pointer;
-border-radius:5px;
+
+body {
+    font-family: var(--font-body);
+    background: var(--off-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-smooth);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+/* ===== LOADING ANIMATION ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-logo {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    color: var(--white);
+    margin-bottom: 20px;
+    animation: float 2s ease-in-out infinite;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== HEADER STYLES ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: var(--white);
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.header.scrolled {
+    padding: 15px 50px;
+    box-shadow: var(--shadow-medium);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+.header-search {
+    flex: 1;
+    max-width: 450px;
+    margin: 0 40px;
+    position: relative;
+}
+
+.header-search input {
+    width: 100%;
+    padding: 14px 50px 14px 25px;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    transition: var(--transition-smooth);
+    background: var(--light-gray);
+}
+
+.header-search input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(201, 169, 98, 0.1);
+}
+
+.header-search i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-actions a,
+.header-actions .cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+    background: transparent;
+    border: 2px solid transparent;
+}
+
+.header-actions a:hover,
+.header-actions .cart-btn:hover {
+    background: var(--light-gray);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.cart-count {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* ===== NAVIGATION ===== */
+.nav {
+    display: flex;
+    justify-content: center;
+    background: var(--primary-color);
+    padding: 0;
+    position: relative;
+}
+
+.nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover), var(--accent-color));
+}
+
+.nav a {
+    padding: 20px 35px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: var(--transition-smooth);
+    transform: translateX(-50%);
+}
+
+.nav a:hover {
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav a:hover::before {
+    width: 100%;
+}
+
+.nav .dropdown {
+    position: relative;
+}
+
+.nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 200px;
+    box-shadow: var(--shadow-medium);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition-smooth);
+    z-index: 100;
+}
+
+.nav .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav .dropdown-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: var(--text-dark);
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.nav .dropdown-menu a:hover {
+    background: var(--light-gray);
+    color: var(--accent-color);
+}
+
+/* ===== HERO BANNER ===== */
+.hero-banner {
+    position: relative;
+    height: 500px;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.6) 100%),
+                url("banner.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.hero-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201, 169, 98, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    padding-left: 80px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content h1 span {
+    color: var(--accent-color);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 35px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-primary {
+    padding: 16px 45px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 5px 25px rgba(201, 169, 98, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(201, 169, 98, 0.5);
+}
+
+.btn-secondary {
+    padding: 16px 45px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+/* ===== FEATURES BAR ===== */
+.features-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--primary-color);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-smooth);
+}
+
+.feature-item:last-child {
+    border-right: none;
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.feature-icon {
+    font-size: 32px;
+    color: var(--accent-color);
+}
+
+.feature-text h4 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.feature-text p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+}
+
+/* ===== SECTION STYLES ===== */
+.section {
+    padding: 80px 50px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+    border-radius: 2px;
+}
+
+.section-header p {
+    color: var(--text-light);
+    font-size: 16px;
+    margin-top: 25px;
+    font-weight: 300;
+}
+
+/* ===== PRODUCTS GRID ===== */
+.products-section {
+    background: var(--white);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 35px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* PRODUCT CARD */
+.product-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    position: relative;
+    box-shadow: var(--shadow-soft);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-strong);
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--light-gray);
+    aspect-ratio: 3/4;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 15px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.product-badge.sale {
+    background: #e74c3c;
+    color: var(--white);
+}
+
+.product-badge.new {
+    background: #27ae60;
+    color: var(--white);
+}
+
+.product-wishlist {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border-radius: 50%;
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: var(--transition-smooth);
+}
+
+.product-card:hover .product-wishlist {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-wishlist:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.product-actions {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(26, 26, 26, 0.95), transparent);
+    transition: var(--transition-smooth);
+}
+
+.product-card:hover .product-actions {
+    bottom: 0;
+}
+
+.product-actions button {
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.product-actions .add-cart {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.product-actions .add-cart:hover {
+    background: var(--white);
+}
+
+.product-actions .quick-view {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.product-actions .quick-view:hover {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+.product-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.product-category {
+    font-size: 12px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.product-card h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    transition: var(--transition-smooth);
+}
+
+.product-card:hover h3 {
+    color: var(--accent-color);
+}
+
+.product-rating {
+    margin-bottom: 12px;
+    color: #ffc107;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.product-rating span {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.product-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.current-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.original-price {
+    font-size: 16px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.discount {
+    font-size: 12px;
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.product-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+}
+
+.product-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+/* ===== CATEGORY SECTION ===== */
+.category-section {
+    background: var(--light-gray);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    position: relative;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(26, 26, 26, 0.8), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+}
+
+.category-content h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.category-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.category-link {
+    color: var(--accent-color);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-link:hover {
+    color: var(--white);
+}
+
+/* ===== NEWSLETTER SECTION ===== */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2d2d2d 100%);
+    text-align: center;
+    padding: 80px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(201, 169, 98, 0.1) 0%, transparent 70%);
+}
+
+.newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter-content h2 {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.newsletter-content p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 16px 25px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: var(--font-body);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transition: var(--transition-smooth);
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.newsletter-form button {
+    padding: 16px 35px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: var(--transition-smooth);
+}
+
+.newsletter-form button:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 80px 50px 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto 50px;
+}
+
+.footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-links a {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 16px;
+    transition: var(--transition-smooth);
+}
+
+.social-links a:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-column h4 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    transition: var(--transition-smooth);
+    display: inline-block;
+}
+
+.footer-column ul li a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.contact-info i {
+    color: var(--accent-color);
+    margin-top: 4px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== MODAL STYLES ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-container {
+    background: var(--white);
+    width: 90%;
+    max-width: 550px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.4s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.modal-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--light-gray);
+    font-size: 20px;
+    color: var(--text-dark);
+    transition: var(--transition-smooth);
+    border: none;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 30px 25px;
+}
+
+/* Product Detail Modal */
+.product-modal-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.product-modal-image img {
+    width: 100%;
+    border-radius: 15px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.product-modal-info h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.product-modal-info .product-rating {
+    margin-bottom: 15px;
+}
+
+.product-modal-info .product-price {
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.product-modal-info .current-price {
+    font-size: 26px;
+}
+
+.product-modal-info p {
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.product-meta {
+    margin-bottom: 25px;
+}
+
+.product-meta-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.product-meta-item span:first-child {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.product-meta-item span:last-child {
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.quantity-selector label {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.quantity-input button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--light-gray);
+    font-size: 18px;
+    color: var(--text-dark);
+    transition: var(--transition-smooth);
+}
+
+.quantity-input button:hover {
+    background: var(--accent-color);
+}
+
+.quantity-input input {
+    width: 60px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.modal-actions .btn-primary {
+    flex: 1;
+}
+
+.modal-actions .btn-secondary {
+    flex: 1;
+    padding: 16px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+/* Order Method Modal */
+.order-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-method-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: var(--light-gray);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.order-method-btn:hover {
+    border-color: var(--accent-color);
+    background: var(--white);
+    transform: translateX(5px);
+}
+
+.order-method-btn i {
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+.order-method-btn.whatsapp i {
+    color: #25d366;
+}
+
+.order-method-btn.instagram i {
+    color: #e4405f;
+}
+
+.order-method-btn.website i {
+    color: var(--primary-color);
+}
+
+/* Direct Order Form */
+.order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 14px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: var(--font-body);
+    transition: var(--transition-smooth);
+    background: var(--white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(201, 169, 98, 0.1);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.order-summary {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.order-summary h4 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.order-success {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 40px;
+    color: var(--primary-color);
+}
+
+.order-success h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.order-success p {
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+/* ===== TOAST NOTIFICATION ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 16px 30px;
+    border-radius: 50px;
+    box-shadow: var(--shadow-strong);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast i {
+    color: var(--accent-color);
+    font-size: 20px;
+}
+
+.toast span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 1200px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-bar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .feature-item:nth-child(2) {
+        border-right: none;
+    }
+    
+    .feature-item:nth-child(1),
+    .feature-item:nth-child(2) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        padding: 15px 30px;
+    }
+    
+    .header-search {
+        max-width: 300px;
+        margin: 0 20px;
+    }
+    
+    .nav a {
+        padding: 18px 25px;
+        font-size: 12px;
+    }
+    
+    .hero-banner {
+        height: 400px;
+    }
+    
+    .hero-content {
+        padding-left: 50px;
+        max-width: 500px;
+    }
+    
+    .hero-content h1 {
+        font-size: 44px;
+    }
+    
+    .product-modal-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .section {
+        padding: 60px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .header-search {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav a {
+        padding: 15px 20px;
+        font-size: 12px;
+    }
+    
+    .hero-banner {
+        height: 350px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero-content {
+        padding: 0 20px;
+        max-width: 100%;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .features-bar {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .feature-item:last-child {
+        border-bottom: none;
+    }
+    
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .modal-container {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .logo {
+        font-size: 28px;
+    }
+    
+    .section-header h2 {
+        font-size: 32px;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-image {
+        aspect-ratio: 1/1;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .order-method-btn {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* ===== SELECTION COLOR ===== */
+::selection {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: flex !important;
 }
 </style>
 </head>
 <body>
 
-<header class="header">
-<div class="logo">sNIX</div>
-<input type="text" placeholder="Search..." id="searchInput" onkeyup="searchProduct()">
-<div class="cart">Cart (0)</div>
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+        <div class="loading-logo">Snix<span>.</span></div>
+        <div class="loading-spinner"></div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header" id="mainHeader">
+    <a href="#" class="logo">Snix<span>.</span></a>
+    
+    <div class="header-search">
+        <input type="text" placeholder="Search perfumes..." id="searchInput" onkeyup="searchProduct()">
+        <i class="fas fa-search"></i>
+    </div>
+    
+    <div class="header-actions">
+        <a href="#"><i class="far fa-user"></i> Account</a>
+        <a href="#" class="cart-btn" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            Cart
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+    </div>
 </header>
 
-<section class="banner">
-<img src="banner.jpg">
-</section>
-
+<!-- Navigation -->
 <nav class="nav">
-<a href="#">Men</a>
-<a href="#">Women</a>
+    <a href="#">Home</a>
+    <div class="dropdown">
+        <a href="#">Perfumes <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></a>
+        <div class="dropdown-menu">
+            <a href="#">Men's Fragrances</a>
+            <a href="#">Women's Fragrances</a>
+            <a href="#">Unisex Perfumes</a>
+            <a href="#">Attar Collection</a>
+        </div>
+    </div>
+    <a href="#">Brands</a>
+    <a href="#">New Arrivals</a>
+    <a href="#">Sale</a>
+    <a href="#">Contact</a>
 </nav>
 
-<section class="products-container">
-<h2>Winning edu</h2>
-<div class="grid">
+<!-- Hero Banner -->
+<section class="hero-banner">
+    <div class="hero-content">
+        <span class="hero-badge">New Collection 2024</span>
+        <h1>Discover Your <span>Signature</span> Scent</h1>
+        <p>Explore our exclusive range of premium perfumes crafted to elevate your personality and leave a lasting impression wherever you go.</p>
+        <div class="hero-buttons">
+            <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+            <button class="btn-secondary">View Collection</button>
+        </div>
+    </div>
+</section>
 
-<div class="product" onclick="showProductDetail('wild.jpg','Wildplay','₹499','Power lively aura.','Both Genders','30ml','Rose')">
-<img src="seddd.jpg">
-<h3>Wildplay</h3>
-<p>₹499</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Wildplay','₹499')">Order Now</button>
-</div>
+<!-- Features Bar -->
+<section class="features-bar">
+    <div class="feature-item">
+        <i class="fas fa-shipping-fast feature-icon"></i>
+        <div class="feature-text">
+            <h4>Free Shipping</h4>
+            <p>On orders above ₹999</p>
+        </div>
+    </div>
+    <div class="feature-item">
+        <i class="fas fa-check-circle feature-icon"></i>
+        <div class="feature-text">
+            <h4>100% Authentic</h4>
+            <p>Guaranteed genuine products</p>
+        </div>
+    </div>
+    <div class="feature-item">
+        <i class="fas fa-undo feature-icon"></i>
+        <div class="feature-text">
+            <h4>Easy Returns</h4>
+            <p>7-day return policy</p>
+        </div>
+    </div>
+    <div class="feature-item">
+        <i class="fas fa-headset feature-icon"></i>
+        <div class="feature-text">
+            <h4>24/7 Support</h4>
+            <p>Dedicated customer service</p>
+        </div>
+    </div>
+</section>
 
-<div class="product" onclick="showProductDetail('duchness.jpg','Duchman','₹399','Power lively aura.','Both Genders','30ml','Rose Marry')">
-<img src="duchness.jpg">
-<h3>Duchman</h3>
-<p>₹399</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Duchman Beast','₹399')">Order Now</button>
-</div>
+<!-- Products Section -->
+<section class="section products-section" id="productsSection">
+    <div class="section-header">
+        <h2>Our Collection</h2>
+        <p>Handpicked premium fragrances for every occasion</p>
+    </div>
     
-<div class="product" onclick="showProductDetail('xx.jpg','Cupid','₹549','Best For Get More Date.','Both Genders','50ml','Fruits')">
-<img src="xx.jpg">
-<h3>Cupid</h3>
-<p>₹549</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Cupid','₹549')">Order Now</button>
-</div>
+    <div class="products-grid" id="productsGrid">
+        
+        <!-- Product 1 -->
+        <div class="product-card" onclick="showProductDetail('copy.jpg', 'Wildplay', '₹499', 'A powerful and lively aura that captures the essence of adventure and freedom. Perfect for the modern individual who dares to stand out.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">
+            <div class="product-image">
+                <img src="copy.jpg" alt="Wildplay Perfume">
+                <span class="product-badge">Bestseller</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('copy.jpg', 'Wildplay', '₹499', 'A powerful and lively aura.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Wildplay', '₹499')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Unisex</span>
+                <h3>Wildplay</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(48)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹499</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Wildplay', '₹499')">Order Now</button>
+            </div>
+        </div>
 
-<div class="product" onclick="showProductDetail('seduct.jpg','Seduction Perfume','₹799','Romantic and Attractive Fragrance.','Both Genders','100ml','Pineapple, Sweet, Attractive')">
-<img src="seduct.jpg">
-<h3>Seduction Perfume</h3>
-<p>₹799</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Black Wild','₹649')">Order Now</button>
-</div>
+        <!-- Product 2 -->
+        <div class="product-card" onclick="showProductDetail('duchman.jpg', 'Duchman', '₹399', 'An elegant fragrance with notes of Rose Marry that creates a romantic and sophisticated aura. Perfect for special occasions and evening wear.', 'Both Genders', '30ml', 'Rose, Floral, Sweet')">
+            <div class="product-image">
+                <img src="duchman.jpg" alt="Duchman Perfume">
+                <span class="product-badge sale">Sale</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('duchman.jpg', 'Duchman', '₹399', 'An elegant fragrance.', 'Both Genders', '30ml', 'Rose, Floral, Sweet')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Duchman', '₹399')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Unisex</span>
+                <h3>Duchman</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(32)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹399</span>
+                    <span class="original-price">₹599</span>
+                    <span class="discount">33% OFF</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Duchman', '₹399')">Order Now</button>
+            </div>
+        </div>
 
-<div class="product" onclick="showProductDetail('jaguar.jpg','Jaguar','₹4999','Power lively aura.','Both Genders','100ml','Earthy & Woody')">
-<img src="jaguar.jpg">
-<h3>Jaguar</h3>
-<p>₹4999</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Jaguar','₹4999')">Out Of Stock</button>
-</div>
+        <!-- Product 3 -->
+        <div class="product-card" onclick="showProductDetail('seduct.jpg', 'Seduction Perfume', '₹799', 'A romantic and attractive fragrance with exotic notes of Pineapple and sweet undertones. Creates an irresistible aura that captivates everyone around you.', 'Both Genders', '100ml', 'Fruity, Sweet, Attractive')">
+            <div class="product-image">
+                <img src="seduct.jpg" alt="Seduction Perfume">
+                <span class="product-badge new">New</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('seduct.jpg', 'Seduction Perfume', '₹799', 'A romantic fragrance.', 'Both Genders', '100ml', 'Fruity, Sweet, Attractive')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Seduction Perfume', '₹799')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Unisex</span>
+                <h3>Seduction Perfume</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(67)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹799</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Seduction Perfume', '₹799')">Order Now</button>
+            </div>
+        </div>
 
-<div class="product" onclick="showProductDetail('blackwild.jpg','Black Wild','₹649','Manly and Powerful Aura.','Both Genders','100ml','No flavour')">
-<img src="blackwild.jpg">
-<h3>Black Wild</h3>
-<p>₹649</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Wild Black','₹649')">Order Now</button>
-</div>
+        <!-- Product 4 -->
+        <div class="product-card" onclick="showProductDetail('blackwild.jpg', 'Black Wild', '₹649', 'A manly and powerful aura with a bold, masculine scent. Designed for the confident man who knows what he wants and isn\'t afraid to go after it.', 'Men', '100ml', 'Woody, Spicy, Bold')">
+            <div class="product-image">
+                <img src="blackwild.jpg" alt="Black Wild Perfume">
+                <span class="product-badge">Popular</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('blackwild.jpg', 'Black Wild', '₹649', 'A manly and powerful aura.', 'Men', '100ml', 'Woody, Spicy, Bold')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Black Wild', '₹649')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Men</span>
+                <h3>Black Wild</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(89)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹649</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Black Wild', '₹649')">Order Now</button>
+            </div>
+        </div>
 
-<div class="product" onclick="showProductDetail('tomford.jpg','Tom Ford','₹6599','Power lively aura.','Both Genders','100ml','Earthy luxurious')">
-<img src="tomford.jpg">
-<h3>Tom Ford</h3>
-<p>₹6599</p>
-<button onclick="event.stopPropagation(); chooseOrderMethod('Tom Ford','₹6599')">Out Of Stock</button>
-</div>
+        <!-- Product 5 -->
+        <div class="product-card" onclick="showProductDetail('perfume5.jpg', 'Royal Oud', '₹1299', 'A luxurious fragrance inspired by the finest oud wood. Rich, deep, and sophisticated - perfect for those who appreciate the finer things in life.', 'Unisex', '100ml', 'Oud, Woody, Oriental')">
+            <div class="product-image">
+                <img src="perfume5.jpg" alt="Royal Oud Perfume">
+                <span class="product-badge">Premium</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume5.jpg', 'Royal Oud', '₹1299', 'A luxurious fragrance.', 'Unisex', '100ml', 'Oud, Woody, Oriental')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Royal Oud', '₹1299')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Premium</span>
+                <h3>Royal Oud</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(156)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹1299</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Royal Oud', '₹1299')">Order Now</button>
+            </div>
+        </div>
 
-</div>
+        <!-- Product 6 -->
+        <div class="product-card" onclick="showProductDetail('perfume6.jpg', 'Aqua Fresh', '₹549', 'A refreshing aquatic fragrance that captures the essence of ocean breezes. Light, clean, and energizing - perfect for daily wear.', 'Men', '100ml', 'Aquatic, Fresh, Citrus')">
+            <div class="product-image">
+                <img src="perfume6.jpg" alt="Aqua Fresh Perfume">
+                <span class="product-badge new">New</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume6.jpg', 'Aqua Fresh', '₹549', 'A refreshing fragrance.', 'Men', '100ml', 'Aquatic, Fresh, Citrus')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Aqua Fresh', '₹549')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Men</span>
+                <h3>Aqua Fresh</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(24)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹549</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Aqua Fresh', '₹549')">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card" onclick="showProductDetail('perfume7.jpg', 'Rose Velvet', '₹699', 'A delicate and feminine fragrance featuring the finest rose petals. Soft, romantic, and elegantly sophisticated for the modern woman.', 'Women', '50ml', 'Rose, Floral, Powdery')">
+            <div class="product-image">
+                <img src="perfume7.jpg" alt="Rose Velvet Perfume">
+                <span class="product-badge">Bestseller</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume7.jpg', 'Rose Velvet', '₹699', 'A delicate feminine fragrance.', 'Women', '50ml', 'Rose, Floral, Powdery')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Rose Velvet', '₹699')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Women</span>
+                <h3>Rose Velvet</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>(78)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹699</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Rose Velvet', '₹699')">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card" onclick="showProductDetail('perfume8.jpg', 'Midnight Musk', '₹899', 'An enchanting evening fragrance with deep musk notes. Mysterious, seductive, and perfect for night outs and special occasions.', 'Unisex', '100ml', 'Musk, Oriental, Woody')">
+            <div class="product-image">
+                <img src="perfume8.jpg" alt="Midnight Musk Perfume">
+                <span class="product-badge sale">20% OFF</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume8.jpg', 'Midnight Musk', '₹899', 'An enchanting evening fragrance.', 'Unisex', '100ml', 'Musk, Oriental, Woody')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Midnight Musk', '₹899')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Unisex</span>
+                <h3>Midnight Musk</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(112)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹899</span>
+                    <span class="original-price">₹1124</span>
+                    <span class="discount">20% OFF</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Midnight Musk', '₹899')">Order Now</button>
+            </div>
+        </div>
+
+    </div>
 </section>
 
-<div id="productDetailModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeProductDetail()">&times;</span>
-<img id="detailImage">
-<h2 id="detailName"></h2>
-<p id="detailPrice"></p>
-<p id="detailDesc"></p>
-<p id="detailGender"></p>
-<p id="detailML"></p>
-<p id="detailFragrance"></p>
-<button onclick="openOrderFromDetail()">Order Now</button>
-</div>
-</div>
-
-<div id="orderMethodModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeOrderMethod()">&times;</span>
-<h2>Choose Order Method</h2>
-<button id="whatsappBtn">Order By WhatsApp</button>
-<button id="webOrderBtn">Order on Website Not Working</button>
-</div>
-</div>
-
-<section class="order-section" id="directOrderForm">
-<h2>Place Your Order</h2>
-<form id="orderForm" onsubmit="submitOrder(event)">
-<input type="text" id="orderName" placeholder="Your Name" required><br>
-<input type="email" id="orderEmail" placeholder="Your Email" required><br>
-<input type="text" id="orderPhone" placeholder="Mobile Number" required><br>
-<textarea id="orderAddress" placeholder="Full Address" required></textarea><br>
-<input type="text" id="orderProduct" readonly><br>
-<input type="hidden" id="orderPrice">
-<button type="submit">Submit Order</button>
-</form>
-<p id="orderMsg" style="color:green;"></p>
+<!-- Category Section -->
+<section class="section category-section">
+    <div class="section-header">
+        <h2>Shop by Category</h2>
+        <p>Find your perfect fragrance based on your preference</p>
+    </div>
+    
+    <div class="category-grid">
+        <div class="category-card" onclick="filterProducts('Men')">
+            <img src="men-perfume.jpg" alt="Men's Fragrances">
+            <div class="category-overlay">
+                <div class="category-content">
+                    <h3>Men's Collection</h3>
+                    <p>Bold, masculine & sophisticated scents</p>
+                    <span class="category-link">Explore Now <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-card" onclick="filterProducts('Women')">
+            <img src="women-perfume.jpg" alt="Women's Fragrances">
+            <div class="category-overlay">
+                <div class="category-content">
+                    <h3>Women's Collection</h3>
+                    <p>Elegant, floral & romantic scents</p>
+                    <span class="category-link">Explore Now <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="newsletter-content">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for exclusive offers, new arrivals, and fragrance tips delivered to your inbox.</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
 <footer class="footer">
-<p>© 2026 Snix – All Rights Reserved</p>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <a href="#" class="logo">Snix<span>.</span></a>
+            <p>Your destination for premium fragrances. We offer authentic perfumes from top brands at unbeatable prices. Find your signature scent today.</p>
+            <div class="social-links">
+                <a href="https://wa.me/919319942411" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/riseup003" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Customer Service</h4>
+            <ul>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Track Order</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Contact Us</h4>
+            <ul class="contact-info">
+                <li><i class="fas fa-map-marker-alt"></i> <span>123 Fashion Street, Mumbai, India</span></li>
+                <li><i class="fas fa-phone-alt"></i> <span>+91 9319942411</span></li>
+                <li><i class="fas fa-envelope"></i> <span>contact@snixstore.com</span></li>
+                <li><i class="fab fa-whatsapp"></i> <span>+91 9319942411</span></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Snix. All Rights Reserved. Crafted with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for fragrance lovers</p>
+        <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-discover"></i>
+        </div>
+    </div>
 </footer>
 
+<!-- Product Detail Modal -->
+<div class="modal-overlay" id="productDetailModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Product Details</h3>
+            <button class="modal-close" onclick="closeProductDetail()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="product-modal-content">
+                <div class="product-modal-image">
+                    <img id="detailImage" src="" alt="Product Image">
+                </div>
+                <div class="product-modal-info">
+                    <h2 id="detailName"></h2>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(45 reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price" id="detailPrice"></span>
+                    </div>
+                    <p id="detailDesc"></p>
+                    
+                    <div class="product-meta">
+                        <div class="product-meta-item">
+                            <span>Suitable For</span>
+                            <span id="detailGender"></span>
+                        </div>
+                        <div class="product-meta-item">
+                            <span>Volume</span>
+                            <span id="detailML"></span>
+                        </div>
+                        <div class="product-meta-item">
+                            <span>Fragrance Type</span>
+                            <span id="detailFragrance"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label>Quantity:</label>
+                        <div class="quantity-input">
+                            <button onclick="decreaseQty()">-</button>
+                            <input type="number" id="productQty" value="1" min="1" readonly>
+                            <button onclick="increaseQty()">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn-primary" onclick="addToCartFromModal()">Add to Cart</button>
+                        <button class="btn-secondary" onclick="buyNow()">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Order Method Modal -->
+<div class="modal-overlay" id="orderMethodModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Place Your Order</h3>
+            <button class="modal-close" onclick="closeOrderMethod()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="order-methods">
+                <button class="order-method-btn whatsapp" id="whatsappBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Order via WhatsApp</span>
+                </button>
+                
+                <button class="order-method-btn instagram" id="instagramBtn">
+                    <i class="fab fa-instagram"></i>
+                    <span>Order via Instagram</span>
+                </button>
+                
+                <button class="order-method-btn website" id="webOrderBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Order on Website</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Direct Order Form Modal -->
+<div class="modal-overlay" id="directOrderModal">
+    <div class="modal-container" style="max-width: 700px;">
+        <div class="modal-header">
+            <h3>Complete Your Order</h3>
+            <button class="modal-close" onclick="closeDirectOrder()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- Web3Forms Form Start -->
+            <form id="web3OrderForm" onsubmit="handleWeb3Submit(event)">
+                
+                <!-- Web3Forms Required Fields -->
+                <input type="hidden" name="access_key" value="bef10bca-a8f0-4c9a-989f-09989edd44a8">
+                <input type="hidden" name="subject" value="New Order - Snix Perfume Store">
+                <input type="hidden" name="redirect" value="https://yourwebsite.com/success"> <!-- Optional: Success page URL -->
+
+                <!-- Hidden Fields for Product Details -->
+                <input type="hidden" name="product_name" id="web3_product_name">
+                <input type="hidden" name="price" id="web3_price">
+                <input type="hidden" name="quantity" id="web3_quantity">
+                <input type="hidden" name="total_amount" id="web3_total">
+
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div class="summary-item">
+                        <span>Product</span>
+                        <span id="orderProductName"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Price</span>
+                        <span id="orderProductPrice"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Quantity</span>
+                        <span id="orderQuantity">1</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total</span>
+                        <span id="orderTotal"></span>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="customer_name" id="orderName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" id="orderEmail" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" id="orderPhone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" name="city" id="orderCity" placeholder="Enter your city" required>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Full Address *</label>
+                    <textarea name="address" id="orderAddress" placeholder="Enter your complete delivery address" required></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Order Notes (Optional)</label>
+                    <textarea name="notes" id="orderNotes" placeholder="Any special instructions for your order"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary" style="width: 100%;">Place Order</button>
+            </form>
+            <!-- Web3Forms Form End -->
+        </div>
+    </div>
+</div>
+<!-- Order Success Modal -->
+<div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-container" style="max-width: 450px;">
+        <div class="modal-body">
+            <div class="order-success">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3>Order Placed Successfully!</h3>
+                <p>Thank you for your order. We will contact you shortly to confirm your order and delivery details.</p>
+                <button class="btn-primary" onclick="closeSuccessModal()">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="modal-overlay" id="cartSidebar">
+    <div class="modal-container" style="max-width: 450px; margin: 0; position: fixed; right: 0; top: 0; height: 100%; border-radius: 0; max-width: 400px;">
+        <div class="modal-header">
+            <h3>Shopping Cart</h3>
+            <button class="modal-close" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+            <div id="cartItems">
+                <p style="text-align: center; color: var(--text-muted); padding: 40px 0;">Your cart is empty</p>
+            </div>
+        </div>
+        <div style="padding: 20px; border-top: 1px solid var(--border-color);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                <span style="font-weight: 600;">Total:</span>
+                <span style="font-weight: 700; font-size: 18px;" id="cartTotal">₹0</span>
+            </div>
+            <button class="btn-primary" style="width: 100%;" onclick="checkoutFromCart()">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Item added to cart!</span>
+</div>
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <script>
-let currentProduct="";
-let currentPrice="";
+    // ===== VARIABLES =====
+    let currentProduct = "";
+    let currentPrice = "";
+    let cart = [];
+    let cartCount = 0;
 
-function showProductDetail(image, name, price, desc, gender, ml, fragrance){
-    document.getElementById("detailImage").src = image;
-    document.getElementById("detailName").innerText = name;
-    document.getElementById("detailPrice").innerText = price;
-    document.getElementById("detailDesc").innerText = desc;
-    document.getElementById("detailGender").innerText = "Suitable for: " + gender;
-    document.getElementById("detailML").innerText = "Volume: " + ml;
-    document.getElementById("detailFragrance").innerText = "Fragrance Type: " + fragrance;
-    currentProduct = name;
-    currentPrice = price;
-    document.getElementById("productDetailModal").style.display = "block";
-}
+    // ===== LOADING SCREEN =====
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }, 1500);
+    });
 
-function closeProductDetail(){
-    document.getElementById("productDetailModal").style.display="none";
-}
+    // ===== HEADER SCROLL EFFECT =====
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
-function openOrderFromDetail(){
-    closeProductDetail();
-    chooseOrderMethod(currentProduct,currentPrice);
-}
-
-function chooseOrderMethod(product, price){
-    currentProduct = product;
-    currentPrice = price;
-    document.getElementById("orderMethodModal").style.display = "block";
-
-    document.getElementById("whatsappBtn").onclick = function() {
-        let message = "*Product:* " + currentProduct + "\n*Price:* " + currentPrice + "\n\n*Customer Details:*\nName: \nAddress: \nPhone: \n\nTHANK YOU FOR SHOPPING WITH US!\nYour order will be delivered soon.";
-        let url = "https://wa.me/919319942415?text=" + encodeURIComponent(message);
-        window.open(url,"_blank");
+    // ===== SCROLL TO PRODUCTS =====
+    function scrollToProducts() {
+        document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    document.getElementById("webOrderBtn").onclick = function(){
-        document.getElementById("directOrderForm").style.display = "block";
-        document.getElementById("orderProduct").value = currentProduct;
-        document.getElementById("orderPrice").value = currentPrice;
-        document.getElementById("orderMethodModal").style.display="none";
-        window.scrollTo(0,document.getElementById("directOrderForm").offsetTop);
+    // ===== PRODUCT DETAIL MODAL =====
+    function showProductDetail(image, name, price, desc, gender, ml, fragrance) {
+        document.getElementById('detailImage').src = image;
+        document.getElementById('detailName').innerText = name;
+        document.getElementById('detailPrice').innerText = price;
+        document.getElementById('detailDesc').innerText = desc;
+        document.getElementById('detailGender').innerText = gender;
+        document.getElementById('detailML').innerText = ml;
+        document.getElementById('detailFragrance').innerText = fragrance;
+        
+        currentProduct = name;
+        currentPrice = price;
+        
+        document.getElementById('productDetailModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
-}
 
-function closeOrderMethod(){
-    document.getElementById("orderMethodModal").style.display="none";
-}
-
-function searchProduct(){
-    let input=document.getElementById("searchInput").value.toLowerCase();
-    let products=document.getElementsByClassName("product");
-    for(let i=0;i<products.length;i++){
-        let name=products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-        products[i].style.display=name.includes(input)?"block":"none";
+    function closeProductDetail() {
+        document.getElementById('productDetailModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
+
+    // ===== QUANTITY SELECTOR =====
+    function increaseQty() {
+        let qty = parseInt(document.getElementById('productQty').value);
+        document.getElementById('productQty').value = qty + 1;
+    }
+
+    function decreaseQty() {
+        let qty = parseInt(document.getElementById('productQty').value);
+        if (qty > 1) {
+            document.getElementById('productQty').value = qty - 1;
+        }
+    }
+
+    // ===== ORDER METHOD MODAL =====
+    function chooseOrderMethod(product, price) {
+        currentProduct = product;
+        currentPrice = price;
+        
+        document.getElementById('orderMethodModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        // WhatsApp Order
+        document.getElementById('whatsappBtn').onclick = function() {
+            let message = `Hello Snix Store! 👋\n\nI want to order:\n📦 Product: ${currentProduct}\n💰 Price: ${currentPrice}\n\nPlease confirm my order.`;
+            let url = "https://wa.me/919319942411?text=" + encodeURIComponent(message);
+            window.open(url, "_blank");
+        };
+
+        // Instagram Order
+        document.getElementById('instagramBtn').onclick = function() {
+            let message = `Hello Snix Store! 👋\nI want to order:\n📦 Product: ${currentProduct}\n💰 Price: ${currentPrice}`;
+            alert("Message to send on Instagram:\n\n" + message);
+            window.open("https://instagram.com/riseup003", "_blank");
+        };
+
+        // Website Order
+        document.getElementById('webOrderBtn').onclick = function() {
+            closeOrderMethod();
+            openDirectOrder();
+        };
+    }
+
+    function closeOrderMethod() {
+        document.getElementById('orderMethodModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // ===== DIRECT ORDER FORM =====
+    function openDirectOrder() {
+        document.getElementById('orderProductName').innerText = currentProduct;
+        document.getElementById('orderProductPrice').innerText = currentPrice;
+        document.getElementById('orderQuantity').innerText = document.getElementById('productQty').value;
+        
+        let qty = parseInt(document.getElementById('productQty').value);
+        let price = parseInt(currentPrice.replace('₹', ''));
+        document.getElementById('orderTotal').innerText = '₹' + (qty * price);
+        
+        document.getElementById('directOrderModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDirectOrder() {
+        document.getElementById('directOrderModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // ===== DIRECT ORDER FORM =====
+function openDirectOrder() {
+    // Product details ko summary mein dikhayein
+    document.getElementById('orderProductName').innerText = currentProduct;
+    document.getElementById('orderProductPrice').innerText = currentPrice;
+    document.getElementById('orderQuantity').innerText = document.getElementById('productQty').value;
+    
+    let qty = parseInt(document.getElementById('productQty').value);
+    let price = parseInt(currentPrice.replace('₹', ''));
+    let total = qty * price;
+    document.getElementById('orderTotal').innerText = '₹' + total;
+    
+    // Web3Forms ke liye hidden fields update karein
+    document.getElementById('web3_product_name').value = currentProduct;
+    document.getElementById('web3_price').value = currentPrice;
+    document.getElementById('web3_quantity').value = qty;
+    document.getElementById('web3_total').value = '₹' + total;
+    
+    document.getElementById('directOrderModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-function submitOrder(event){
+function closeDirectOrder() {
+    document.getElementById('directOrderModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// ===== WEB3FORMS SUBMIT FUNCTION =====
+function handleWeb3Submit(event) {
     event.preventDefault();
-    document.getElementById("orderMsg").innerText="Order Submitted!";
-    document.getElementById("orderForm").reset();
-    document.getElementById("directOrderForm").style.display="none";
+    
+    const form = document.getElementById('web3OrderForm');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Web3Forms Endpoint
+    const url = 'https://api.web3forms.com/submit';
+    
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then((response) => {
+        if (response.ok) {
+            closeDirectOrder();
+            document.getElementById('orderSuccessModal').style.display = 'flex';
+            form.reset();
+            showToast('Order placed successfully! Check your email.');
+        } else {
+            showToast('Order failed! Please try again.');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        showToast('Something went wrong!');
+    });
 }
+    function closeSuccessModal() {
+        document.getElementById('orderSuccessModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // ===== CART FUNCTIONS =====
+    function addToCart(product, price) {
+        cart.push({ product: product, price: price });
+        cartCount = cart.length;
+        document.getElementById('cartCount').innerText = cartCount;
+        showToast(product + ' added to cart!');
+    }
+
+    function addToCartFromModal() {
+        let qty = parseInt(document.getElementById('productQty').value);
+        for (let i = 0; i < qty; i++) {
+            cart.push({ product: currentProduct, price: currentPrice });
+        }
+        cartCount = cart.length;
+        document.getElementById('cartCount').innerText = cartCount;
+        showToast(currentProduct + ' added to cart!');
+        closeProductDetail();
+    }
+
+    function buyNow() {
+        closeProductDetail();
+        chooseOrderMethod(currentProduct, currentPrice);
+    }
+
+    function toggleCart() {
+        let cartModal = document.getElementById('cartSidebar');
+        if (cartModal.style.display === 'flex') {
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        } else {
+            updateCartDisplay();
+            cartModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+       // ===== UPDATE CART DISPLAY =====
+    function updateCartDisplay() {
+        let cartItems = document.getElementById('cartItems');
+        let cartTotal = document.getElementById('cartTotal');
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 40px 0;">Your cart is empty</p>';
+            cartTotal.innerText = '₹0';
+            return;
+        }
+        
+        let html = '';
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            let price = parseInt(item.price.replace('₹', ''));
+            total += price;
+            html += `
+                <div style="display: flex; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid var(--border-color);">
+                    <div style="width: 60px; height: 60px; background: var(--light-gray); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-spray-can" style="color: var(--accent-color);"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="font-size: 14px; margin-bottom: 5px;">${item.product}</h4>
+                        <span style="color: var(--accent-color); font-weight: 600;">${item.price}</span>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 18px;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+        });
+        
+        cartItems.innerHTML = html;
+        cartTotal.innerText = '₹' + total;
+    }
+
+    // ===== REMOVE FROM CART =====
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        cartCount = cart.length;
+        document.getElementById('cartCount').innerText = cartCount;
+        updateCartDisplay();
+    }
+
+    // ===== CHECKOUT FROM CART =====
+    function checkoutFromCart() {
+        if (cart.length === 0) {
+            showToast('Your cart is empty!');
+            return;
+        }
+        
+        toggleCart();
+        
+        // Calculate total
+        let total = 0;
+        let products = [];
+        cart.forEach(item => {
+            let price = parseInt(item.price.replace('₹', ''));
+            total += price;
+            products.push(item.product);
+        });
+        
+        currentProduct = products.join(', ');
+        currentPrice = '₹' + total;
+        
+        openDirectOrder();
+    }
+
+    // ===== SEARCH FUNCTION =====
+    function searchProduct() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let products = document.getElementsByClassName('product-card');
+        
+        for (let i = 0; i < products.length; i++) {
+            let name = products[i].querySelector('h3').innerText.toLowerCase();
+            let category = products[i].querySelector('.product-category').innerText.toLowerCase();
+            
+            if (name.includes(input) || category.includes(input)) {
+                products[i].style.display = 'block';
+                products[i].style.animation = 'fadeInUp 0.5s ease';
+            } else {
+                products[i].style.display = 'none';
+            }
+        }
+    }
+
+    // ===== FILTER PRODUCTS =====
+    function filterProducts(category) {
+        let products = document.getElementsByClassName('product-card');
+        
+        for (let i = 0; i < products.length; i++) {
+            let productCategory = products[i].querySelector('.product-category').innerText;
+            
+            if (category === 'All' || productCategory === category || (category === 'Men' && productCategory === 'Unisex') || (category === 'Women' && productCategory === 'Unisex')) {
+                products[i].style.display = 'block';
+                products[i].style.animation = 'fadeInUp 0.5s ease';
+            } else {
+                products[i].style.display = 'none';
+            }
+        }
+        
+        // Scroll to products
+        document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ===== NEWSLETTER SUBSCRIPTION =====
+    function subscribeNewsletter(event) {
+        event.preventDefault();
+        let email = event.target.querySelector('input').value;
+        
+        if (email) {
+            showToast('Thank you for subscribing!');
+            event.target.reset();
+        }
+    }
+
+    // ===== TOAST NOTIFICATION =====
+    function showToast(message) {
+        let toast = document.getElementById('toast');
+        let toastMessage = document.getElementById('toastMessage');
+        
+        toastMessage.innerText = message;
+        toast.classList.add('show');
+        
+        setTimeout(function() {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // ===== CLOSE MODALS ON OUTSIDE CLICK =====
+    window.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // ===== ESC KEY TO CLOSE MODALS =====
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+    });
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
