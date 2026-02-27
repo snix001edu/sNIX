@@ -1061,36 +1061,62 @@ img {
         border: 1px solid #ddd;
     }
 }
-/* ===== MOBILE VIEW FIX (Product 2 Column) ===== */
-@media (max-width: 1366px) {
+/* ===== PHONE FIX: 2 PRODUCTS PER ROW + 912/1368 RATIO ===== */
+
+/* Mobile devices ke liye (768px aur neeche) */
+@media (max-width: 768px) {
+    /* Products Grid - 2 columns */
     .products-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 0 10px !important;
         width: 100% !important;
         max-width: 100% !important;
-        gap: 15px !important;
-        padding: 0 15px !important;
+    }
+    
+    /* Product Image - 912/1368 ratio (2:3) */
+    .product-image {
+        aspect-ratio: 912 / 1368 !important;
+        height: auto !important;
+        width: 100% !important;
+    }
+    
+    .product-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        padding: 8px !important;
+    }
+    
+    /* Product card ki width */
+    .product {
+        width: 100% !important;
+        margin: 0 !important;
     }
 }
 
-/* Extra Small Mobile (Small phones ke liye) */
+/* Chhote phones ke liye (480px aur neeche) */
 @media (max-width: 480px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* 2 hi rhega */
-        gap: 10px !important;
+        gap: 8px !important;
+        padding: 0 8px !important;
     }
     
-    .product {
-        width: 100% !important;
+    .product-image {
+        aspect-ratio: 912 / 1368 !important;
     }
     
     .product-info {
-        padding: 10px !important;
+        padding: 8px !important;
+    }
+    
+    .product h3 {
+        font-size: 12px !important;
+    }
+    
+    .product-btn {
+        padding: 6px 8px !important;
+        font-size: 9px !important;
     }
 }
-
-
-
-
-
-
