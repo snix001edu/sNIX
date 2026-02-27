@@ -1,5 +1,5 @@
 /* ============================================
-   LUXURY PERFUME WEBSITE - PROFESSIONAL CSS
+   LUXURY PERFUME WEBSITE - FIXED CSS
    ============================================ */
 
 /* ===== CSS VARIABLES ===== */
@@ -603,7 +603,6 @@ img {
     font-size: 16px;
 }
 
-/* ===== NEWSLETTER SECTION (Continued) ===== */
 .newsletter-form {
     display: flex;
     gap: 15px;
@@ -837,14 +836,26 @@ img {
     background: var(--primary-color);
 }
 
-/* ===== MOBILE RESPONSIVE STYLES ===== */
-@media (max-width: 1200px) {
+/* ============================================
+   RESPONSIVE STYLES - DESKTOP FIRST
+   ============================================ */
+
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
     .products-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media (max-width: 1024px) {
+/* Desktop (1024px - 1199px) */
+@media (max-width: 1199px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (max-width: 1023px) {
     .features {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -854,11 +865,16 @@ img {
     }
     
     .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
+/* ============================================
+   MOBILE PHONE FIX - BELLAVITA STYLE
+   ============================================ */
+
+@media (max-width: 767px) {
+    /* Header */
     .header {
         flex-direction: column;
         padding: 15px 20px;
@@ -876,6 +892,7 @@ img {
         justify-content: center;
     }
     
+    /* Navigation */
     .nav {
         flex-wrap: wrap;
         justify-content: center;
@@ -886,6 +903,7 @@ img {
         font-size: 12px;
     }
     
+    /* Hero Section */
     .hero {
         height: 400px;
         justify-content: center;
@@ -909,52 +927,177 @@ img {
         font-size: 13px;
     }
     
+    /* Products Section - BELLAVITA STYLE */
     .products-container {
-        padding: 40px 20px;
+        padding: 30px 15px;
+        background: var(--white);
     }
     
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
     }
     
+    /* Product Card - Clean & Simple */
     .product {
-        min-height: auto;
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        border: 1px solid #f0f0f0;
+        height: auto !important;
     }
     
+    /* Product Image - Square (1:1 ratio) */
     .product-image {
-        aspect-ratio: 1/1;
+        aspect-ratio: 1 / 1 !important;
+        height: auto !important;
+        width: 100% !important;
+        min-height: unset !important;
+        background: var(--white);
     }
     
+    .product-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        padding: 15px !important;
+    }
+    
+    /* Product Info */
     .product-info {
-        padding: 15px;
+        padding: 12px 10px !important;
+        text-align: center !important;
+        flex: unset !important;
+        display: block !important;
     }
     
+    /* Category */
+    .product-category {
+        font-size: 9px !important;
+        margin-bottom: 4px !important;
+        letter-spacing: 1px;
+    }
+    
+    /* Product Title */
     .product h3 {
-        font-size: 16px;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        margin-bottom: 4px !important;
+        line-height: 1.3 !important;
+        min-height: unset !important;
+        font-family: var(--font-body) !important;
     }
     
+    /* Rating */
+    .product-rating {
+        font-size: 11px !important;
+        margin-bottom: 4px !important;
+    }
+    
+    /* Price */
+    .product-price {
+        margin-bottom: 10px !important;
+        justify-content: center;
+    }
+    
+    .current-price {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: var(--primary-color);
+    }
+    
+    .original-price {
+        font-size: 11px !important;
+        color: #999;
+    }
+    
+    /* Button */
     .product-btn {
-        padding: 10px;
-        font-size: 11px;
+        padding: 10px 12px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Hide hover actions on mobile */
+    .product-actions {
+        display: none !important;
+    }
+    
+    /* Badge */
+    .product-badge {
+        font-size: 9px !important;
+        padding: 4px 10px !important;
+        top: 10px !important;
+        left: 10px !important;
+    }
+    
+    /* Section Title */
+    .section-title {
+        margin-bottom: 30px;
     }
     
     .section-title h2 {
-        font-size: 28px;
+        font-size: 24px !important;
     }
     
+    /* Features Section */
     .features {
         grid-template-columns: repeat(2, 1fr);
-        padding: 30px 20px;
+        padding: 30px 15px;
         gap: 15px;
     }
     
+    .feature-item {
+        padding: 20px 10px;
+    }
+    
+    .feature-icon {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    
+    .feature-item h3 {
+        font-size: 14px;
+    }
+    
+    .feature-item p {
+        font-size: 12px;
+    }
+    
+    /* Newsletter */
     .newsletter {
         padding: 40px 20px;
     }
     
+    .newsletter h2 {
+        font-size: 24px;
+    }
+    
+    .newsletter p {
+        font-size: 14px;
+    }
+    
     .newsletter-form {
         flex-direction: column;
+        gap: 10px;
+    }
+    
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+        padding: 14px 20px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 50px 20px 20px;
     }
     
     .footer-content {
@@ -975,73 +1118,32 @@ img {
     .footer-bottom {
         flex-direction: column;
         gap: 15px;
+        padding-top: 20px;
     }
 }
 
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 28px;
-    }
-    
-    .logo {
-        font-size: 24px;
-    }
-    
+/* Very Small Phones (up to 360px) */
+@media (max-width: 360px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    
-    .products-container {
-        padding: 30px 15px;
-    }
-    
-    .product-image {
-        aspect-ratio: 1/1;
+        gap: 8px !important;
+        padding: 0 8px !important;
     }
     
     .product-info {
-        padding: 12px;
-    }
-    
-    .product-category {
-        font-size: 10px;
+        padding: 10px 8px !important;
     }
     
     .product h3 {
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-    
-    .product-rating {
-        font-size: 12px;
-        margin-bottom: 5px;
-    }
-    
-    .product-price {
-        margin-bottom: 10px;
+        font-size: 11px !important;
     }
     
     .current-price {
-        font-size: 16px;
-    }
-    
-    .original-price {
-        font-size: 12px;
+        font-size: 12px !important;
     }
     
     .product-btn {
-        padding: 8px;
-        font-size: 10px;
-    }
-    
-    .product-actions {
-        padding: 10px;
-    }
-    
-    .product-actions button {
-        padding: 8px 12px;
-        font-size: 10px;
+        padding: 8px 10px !important;
+        font-size: 10px !important;
     }
 }
 
@@ -1054,189 +1156,10 @@ img {
     body {
         background: white;
     }
-    /* ============================================
-   MOBILE PHONE FIX - CLEAN VERSION
-   ============================================ */
-
-@media (max-width: 768px) {
-    /* Products Grid - 2 columns, equal size */
-    .products-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        padding: 0 12px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 auto !important;
-    }
     
-    /* Product Card - Clean look */
-    .product {
-        width: 100% !important;
-        margin: 0 !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-    }
-    
-    /* Product Image - 1:1 ratio (square, jaisa bellavita mein hai) */
-    .product-image {
-        aspect-ratio: 1 / 1 !important;
-        height: auto !important;
-        width: 100% !important;
-        min-height: unset !important;
-    }
-    
-    .product-image img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain !important;
-        padding: 10px !important;
-    }
-    
-    /* Product Info */
-    .product-info {
-        padding: 10px 8px !important;
-        text-align: center !important;
-    }
-    
-    /* Category */
-    .product-category {
-        font-size: 9px !important;
-        margin-bottom: 4px !important;
-    }
-    
-    /* Product Title */
-    .product h3 {
-        font-size: 13px !important;
-        font-weight: 600 !important;
-        margin-bottom: 4px !important;
-        line-height: 1.3 !important;
-        min-height: unset !important;
-    }
-    
-    /* Rating */
-    .product-rating {
-        font-size: 11px !important;
-        margin-bottom: 4px !important;
-    }
-    
-    /* Price */
-    .product-price {
-        margin-bottom: 8px !important;
-    }
-    
-    .current-price {
-        font-size: 14px !important;
-        font-weight: 700 !important;
-    }
-    
-    .original-price {
-        font-size: 11px !important;
-    }
-    
-    /* Button */
-    .product-btn {
-        padding: 8px 10px !important;
-        font-size: 10px !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Hide hover actions on mobile (not needed) */
-    .product-actions {
-        display: none !important;
-    }
-    
-    /* Badge */
-    .product-badge {
-        font-size: 9px !important;
-        padding: 4px 10px !important;
-    }
-}
-
-/* Very small phones (iPhone SE type) */
-@media (max-width: 360px) {
-    .products-grid {
-        gap: 8px !important;
-        padding: 0 8px !important;
-    }
-    
-    .product-info {
-        padding: 8px 5px !important;
-    }
-    
-    .product h3 {
-        font-size: 11px !important;
-    }
-    
-    .current-price {
-        font-size: 12px !important;
-    }
-}
     .product {
         break-inside: avoid;
         box-shadow: none;
         border: 1px solid #ddd;
     }
 }
-/* ===== PHONE FIX: 2 PRODUCTS PER ROW + 912/1368 RATIO ===== */
-
-/* Mobile devices ke liye (768px aur neeche) */
-@media (max-width: 768px) {
-    /* Products Grid - 2 columns */
-    .products-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-        padding: 0 10px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    
-    /* Product Image - 912/1368 ratio (2:3) */
-    .product-image {
-        aspect-ratio: 912 / 1368 !important;
-        height: auto !important;
-        width: 100% !important;
-    }
-    
-    .product-image img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        padding: 8px !important;
-    }
-    
-    /* Product card ki width */
-    .product {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-}
-
-/* Chhote phones ke liye (480px aur neeche) */
-@media (max-width: 600px) {
-    .products-grid {
-        gap: 8px !important;
-        padding: 0 8px !important;
-    }
-    
-    .product-image {
-        aspect-ratio: 912 / 1368 !important;
-    }
-    
-    .product-info {
-        padding: 8px !important;
-    }
-    
-    .product h3 {
-        font-size: 12px !important;
-    }
-    
-    .product-btn {
-        padding: 6px 8px !important;
-        font-size: 9px !important;
-    }
-}
-
-
-
