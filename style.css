@@ -343,14 +343,17 @@ img {
     margin: 0 auto;
 }
 
-/* PRODUCT CARD */
-.product {
-    background: var(--white);
-    border-radius: 15px;
+/* Force all products to same size */
+.product-card {
+    min-height: 350px;
+    max-height: 400px;
     overflow: hidden;
-    transition: var(--transition-smooth);
-    position: relative;
-    box-shadow: var(--shadow-soft);
+}
+
+.product-card img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
 }
 
 .product:hover {
@@ -969,3 +972,4 @@ img {
     }
 }
    
+
