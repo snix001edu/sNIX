@@ -1065,9 +1065,9 @@ img {
 @media (max-width: 720px) {
     .products-grid {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        width: 80% !important;
-        max-width: 800% !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 100% !important;
+        max-width: 100% !important;
         gap: 15px !important;
         padding: 0 15px !important;
     }
@@ -1076,18 +1076,19 @@ img {
 /* Extra Small Mobile (Small phones ke liye) */
 @media (max-width: 420px) {
     .products-grid {
-        grid-template-columns: repeat(3, 1fr) !important; /* 2 hi rhega */
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 hi rhega */
         gap: 10px !important;
     }
     
     .product {
-        width: 800% !important;
+        width: 100% !important;
     }
     
     .product-info {
         padding: 10px !important;
     }
 }
+
 
 
 
