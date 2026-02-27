@@ -1050,127 +1050,128 @@ img {
     .nav, .header-search, .cart, .product-actions, .newsletter {
         display: none;
     }
-    /* ===== PHONE FIX: 2 PRODUCTS PER ROW + 912/1368 RATIO ===== */
+    
+    body {
+        background: white;
+    }
+    /* ============================================
+   MOBILE PHONE FIX - CLEAN VERSION
+   ============================================ */
 
 @media (max-width: 768px) {
-    /* Products Grid - 2 columns */
+    /* Products Grid - 2 columns, equal size */
     .products-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-        padding: 0 10px !important;
+        gap: 12px !important;
+        padding: 0 12px !important;
         width: 100% !important;
         max-width: 100% !important;
+        margin: 0 auto !important;
     }
     
-    /* Product Image - 912/1368 ratio (2:3) */
+    /* Product Card - Clean look */
+    .product {
+        width: 100% !important;
+        margin: 0 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Product Image - 1:1 ratio (square, jaisa bellavita mein hai) */
     .product-image {
-        aspect-ratio: 912 / 1368 !important;
+        aspect-ratio: 1 / 1 !important;
         height: auto !important;
         width: 100% !important;
+        min-height: unset !important;
     }
     
     .product-image img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important;
-        padding: 8px !important;
-    }
-    
-    /* Product card */
-    .product {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-    
-    /* Product Card */
-    .product {
-        border-radius: 10px !important;
-        overflow: hidden !important;
-    }
-    
-    /* Image Container */
-    .product-image {
-        min-height: 150px !important;
-    }
-    
-    /* Image khud */
-    .product-image img {
         object-fit: contain !important;
         padding: 10px !important;
     }
     
-    /* Text Section */
+    /* Product Info */
     .product-info {
-        padding: 8px 5px !important;
+        padding: 10px 8px !important;
         text-align: center !important;
-    }
-    
-    /* Product Title */
-    .product h3 {
-        font-size: 11px !important;
-        line-height: 1.2 !important;
-        margin-bottom: 4px !important;
-        min-height: 28px !important;
-        overflow: hidden !important;
-    }
-    
-    /* Price */
-    .product-price {
-        margin-bottom: 5px !important;
-    }
-    
-    .current-price {
-        font-size: 13px !important;
     }
     
     /* Category */
     .product-category {
-        font-size: 8px !important;
+        font-size: 9px !important;
+        margin-bottom: 4px !important;
+    }
+    
+    /* Product Title */
+    .product h3 {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        margin-bottom: 4px !important;
+        line-height: 1.3 !important;
+        min-height: unset !important;
+    }
+    
+    /* Rating */
+    .product-rating {
+        font-size: 11px !important;
+        margin-bottom: 4px !important;
+    }
+    
+    /* Price */
+    .product-price {
+        margin-bottom: 8px !important;
+    }
+    
+    .current-price {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+    }
+    
+    .original-price {
+        font-size: 11px !important;
     }
     
     /* Button */
     .product-btn {
-        padding: 6px 4px !important;
-        font-size: 8px !important;
-        width: 100% !important;
+        padding: 8px 10px !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
     }
     
-    /* Rating stars */
-    .product-rating {
-        font-size: 10px !important;
-        margin-bottom: 3px !important;
+    /* Hide hover actions on mobile (not needed) */
+    .product-actions {
+        display: none !important;
+    }
+    
+    /* Badge */
+    .product-badge {
+        font-size: 9px !important;
+        padding: 4px 10px !important;
     }
 }
 
-/* Chhote phones ke liye (480px aur neeche) */
-@media (max-width: 480px) {
+/* Very small phones (iPhone SE type) */
+@media (max-width: 360px) {
     .products-grid {
         gap: 8px !important;
         padding: 0 8px !important;
     }
     
-    .product-image {
-        aspect-ratio: 912 / 1368 !important;
-    }
-    
     .product-info {
-        padding: 8px !important;
+        padding: 8px 5px !important;
     }
     
     .product h3 {
-        font-size: 10px !important;
+        font-size: 11px !important;
     }
     
-    .product-btn {
-        padding: 5px 3px !important;
-        font-size: 7px !important;
+    .current-price {
+        font-size: 12px !important;
     }
 }
-    body {
-        background: white;
-    }
-    
     .product {
         break-inside: avoid;
         box-shadow: none;
@@ -1236,5 +1237,6 @@ img {
         font-size: 9px !important;
     }
 }
+
 
 
