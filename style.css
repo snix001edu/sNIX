@@ -1062,7 +1062,7 @@ img {
     }
 }
 /* ===== MOBILE VIEW FIX (Product 2 Column) ===== */
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
     .products-grid {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
@@ -1074,7 +1074,7 @@ img {
 }
 
 /* Extra Small Mobile (Small phones ke liye) */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr) !important; /* 2 hi rhega */
         gap: 10px !important;
@@ -1088,4 +1088,5 @@ img {
         padding: 10px !important;
     }
 }
+
 
