@@ -1706,20 +1706,25 @@ button {
         <div class="dropdown-menu">
             <a href="#">Men's Fragrances</a>
             <a href="#">Women's Fragrances</a>
-            <a href="#">Both Perfumes</a>
+            <a href="#">Unisex Perfumes</a>
+            <a href="#">Attar Collection</a>
         </div>
     </div>
-    <a href="#">New</a>
+    <a href="#">Brands</a>
+    <a href="#">New Arrivals</a>
+    <a href="#">Sale</a>
+    <a href="#">Contact</a>
 </nav>
 
 <!-- Hero Banner -->
 <section class="hero-banner">
     <div class="hero-content">
-        <span class="hero-badge">New Collection 2026</span>
+        <span class="hero-badge">New Collection 2024</span>
         <h1>Discover Your <span>Signature</span> Scent</h1>
+        <p>Explore our exclusive range of premium perfumes crafted to elevate your personality and leave a lasting impression wherever you go.</p>
         <div class="hero-buttons">
             <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
-            <button class="btn-secondary" onclick="scrollToProducts()">View Collection</button>
+            <button class="btn-secondary">View Collection</button>
         </div>
     </div>
 </section>
@@ -1730,7 +1735,7 @@ button {
         <i class="fas fa-shipping-fast feature-icon"></i>
         <div class="feature-text">
             <h4>Free Shipping</h4>
-            <p>On Special Times</p>
+            <p>On orders above ₹999</p>
         </div>
     </div>
     <div class="feature-item">
@@ -1740,30 +1745,44 @@ button {
             <p>Guaranteed genuine products</p>
         </div>
     </div>
+    <div class="feature-item">
+        <i class="fas fa-undo feature-icon"></i>
+        <div class="feature-text">
+            <h4>Easy Returns</h4>
+            <p>7-day return policy</p>
+        </div>
+    </div>
+    <div class="feature-item">
+        <i class="fas fa-headset feature-icon"></i>
+        <div class="feature-text">
+            <h4>24/7 Support</h4>
+            <p>Dedicated customer service</p>
+        </div>
+    </div>
 </section>
 
 <!-- Products Section -->
 <section class="section products-section" id="productsSection">
     <div class="section-header">
         <h2>Our Collection</h2>
-        <p>PREMIUM FRAGRANCE</p>
+        <p>Handpicked premium fragrances for every occasion</p>
     </div>
     
     <div class="products-grid" id="productsGrid">
         
         <!-- Product 1 -->
-        <div class="product-card" onclick="showProductDetail('wildlove.jpg', 'Wildplay', '₹349', 'A powerful and lively aura that captures the essence of adventure and freedom. Perfect for the modern individual who dares to stand out.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">
+        <div class="product-card" onclick="showProductDetail('copy.jpg', 'Wildplay', '₹499', 'A powerful and lively aura that captures the essence of adventure and freedom. Perfect for the modern individual who dares to stand out.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">
             <div class="product-image">
-                <img src="wildlove.jpg" alt="Wildplay Perfume">
+                <img src="copy.jpg" alt="Wildplay Perfume">
                 <span class="product-badge">Bestseller</span>
                 <div class="product-wishlist">
                     <i class="far fa-heart"></i>
                 </div>
                 <div class="product-actions">
-                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('copy.jpg', 'Wildplay', '₹349', 'A powerful and lively aura.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">Quick View</button>
-                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Wildplay', '₹349')">Add to Cart</button>                                                                                                                                                                           
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('copy.jpg', 'Wildplay', '₹499', 'A powerful and lively aura.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Wildplay', '₹499')">Add to Cart</button>
                 </div>
-            </div>                                                                                                                                                                                             
+            </div>
             <div class="product-info">
                 <span class="product-category">Unisex</span>
                 <h3>Wildplay</h3>
@@ -1776,16 +1795,16 @@ button {
                     <span>(48)</span>
                 </div>
                 <div class="product-price">
-                    <span class="current-price">₹349</span>
+                    <span class="current-price">₹499</span>
                 </div>
-                <button class="product-btn" onclick="chooseOrderMethod('Wildplay', '₹349')">Order Now</button>
+                <button class="product-btn" onclick="chooseOrderMethod('Wildplay', '₹499')">Order Now</button>
             </div>
         </div>
 
         <!-- Product 2 -->
-        <div class="product-card" onclick="showProductDetail('beast.jpg', 'Duchman', '₹399', 'An elegant fragrance with notes of Rose Marry that creates a romantic and sophisticated aura. Perfect for special occasions and evening wear.', 'Both Genders', '30ml', 'Rose, Floral, Sweet')">
+        <div class="product-card" onclick="showProductDetail('duchman.jpg', 'Duchman', '₹399', 'An elegant fragrance with notes of Rose Marry that creates a romantic and sophisticated aura. Perfect for special occasions and evening wear.', 'Both Genders', '30ml', 'Rose, Floral, Sweet')">
             <div class="product-image">
-                <img src="beast.jpg" alt="Duchman Perfume">
+                <img src="duchman.jpg" alt="Duchman Perfume">
                 <span class="product-badge sale">Sale</span>
                 <div class="product-wishlist">
                     <i class="far fa-heart"></i>
@@ -1847,9 +1866,9 @@ button {
         </div>
 
         <!-- Product 4 -->
-        <div class="product-card" onclick="showProductDetail('blkw.jpg', 'Black Wild', '₹649', 'A manly and powerful aura with a bold, masculine scent. Designed for the confident man who knows what he wants and isn\'t afraid to go after it.', 'Men', '100ml', 'Woody, Spicy, Bold')">
+        <div class="product-card" onclick="showProductDetail('blackwild.jpg', 'Black Wild', '₹649', 'A manly and powerful aura with a bold, masculine scent. Designed for the confident man who knows what he wants and isn\'t afraid to go after it.', 'Men', '100ml', 'Woody, Spicy, Bold')">
             <div class="product-image">
-                <img src="blkw.jpg" alt="Black Wild Perfume">
+                <img src="blackwild.jpg" alt="Black Wild Perfume">
                 <span class="product-badge">Popular</span>
                 <div class="product-wishlist">
                     <i class="far fa-heart"></i>
@@ -1878,21 +1897,21 @@ button {
         </div>
 
         <!-- Product 5 -->
-        <div class="product-card" onclick="showProductDetail('cupid.jpg', 'Cupid', '₹549', 'A luxurious fragrance inspired by the finest oud wood. Rich, deep, and sophisticated - perfect for those who appreciate the finer things in life.', 'Male', '50ml', 'Mixed Fruit')">
+        <div class="product-card" onclick="showProductDetail('perfume5.jpg', 'Royal Oud', '₹1299', 'A luxurious fragrance inspired by the finest oud wood. Rich, deep, and sophisticated - perfect for those who appreciate the finer things in life.', 'Unisex', '100ml', 'Oud, Woody, Oriental')">
             <div class="product-image">
-                <img src="cupid.jpg" alt="Cupid">
+                <img src="perfume5.jpg" alt="Royal Oud Perfume">
                 <span class="product-badge">Premium</span>
                 <div class="product-wishlist">
                     <i class="far fa-heart"></i>
                 </div>
                 <div class="product-actions">
-                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('cupid.jpg', 'Cupid', '₹549', 'A luxurious fragrance.', 'Male', '50ml', 'Oud, Woody, Oriental')">Quick View</button>
-                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Cupid', '₹549')">Add to Cart</button>                                             
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume5.jpg', 'Royal Oud', '₹1299', 'A luxurious fragrance.', 'Unisex', '100ml', 'Oud, Woody, Oriental')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Royal Oud', '₹1299')">Add to Cart</button>
                 </div>
             </div>
             <div class="product-info">
                 <span class="product-category">Premium</span>
-                <h3>Cupid</h3>
+                <h3>Royal Oud</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1902,28 +1921,28 @@ button {
                     <span>(156)</span>
                 </div>
                 <div class="product-price">
-                    <span class="current-price">₹549</span>
+                    <span class="current-price">₹1299</span>
                 </div>
-                <button class="product-btn" onclick="chooseOrderMethod('Cupid', '₹549')">Order Now</button>
+                <button class="product-btn" onclick="chooseOrderMethod('Royal Oud', '₹1299')">Order Now</button>
             </div>
         </div>
 
         <!-- Product 6 -->
-        <div class="product-card" onclick="showProductDetail('godfather.jpg', 'Godfather', '₹699', 'A refreshing aquatic fragrance that captures the essence of ocean breezes. Light, clean, and energizing - perfect for daily wear.', 'Men', '60ml', 'Sandalwood')">
+        <div class="product-card" onclick="showProductDetail('perfume6.jpg', 'Aqua Fresh', '₹549', 'A refreshing aquatic fragrance that captures the essence of ocean breezes. Light, clean, and energizing - perfect for daily wear.', 'Men', '100ml', 'Aquatic, Fresh, Citrus')">
             <div class="product-image">
-                <img src="godfather.jpg" alt="Godfather">
+                <img src="perfume6.jpg" alt="Aqua Fresh Perfume">
                 <span class="product-badge new">New</span>
                 <div class="product-wishlist">
                     <i class="far fa-heart"></i>
                 </div>
                 <div class="product-actions">
-                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume6.jpg', 'godfather', '₹699', 'A refreshing fragrance.', 'Men', '60ml', 'Aquatic, Fresh, Citrus')">Quick View</button>
-                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Godfather', '₹699')">Add to Cart</button>
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume6.jpg', 'Aqua Fresh', '₹549', 'A refreshing fragrance.', 'Men', '100ml', 'Aquatic, Fresh, Citrus')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Aqua Fresh', '₹549')">Add to Cart</button>
                 </div>
-            </div>                                                                                                                                                                                                         
+            </div>
             <div class="product-info">
                 <span class="product-category">Men</span>
-                <h3>God father</h3>
+                <h3>Aqua Fresh</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1933,28 +1952,28 @@ button {
                     <span>(24)</span>
                 </div>
                 <div class="product-price">
-                    <span class="current-price">₹699</span>
+                    <span class="current-price">₹549</span>
                 </div>
-                <button class="product-btn" onclick="chooseOrderMethod('Godfather', '₹699')">Order NOW</button>
+                <button class="product-btn" onclick="chooseOrderMethod('Aqua Fresh', '₹549')">Order Now</button>
             </div>
         </div>
 
         <!-- Product 7 -->
-        <div class="product-card" onclick="showProductDetail('villain.jpg', 'Villain', '₹739', 'A hard and powerfull perfume for unisex.', 'Unisex', '100ml', 'Unflouvered')">
+        <div class="product-card" onclick="showProductDetail('perfume7.jpg', 'Rose Velvet', '₹699', 'A delicate and feminine fragrance featuring the finest rose petals. Soft, romantic, and elegantly sophisticated for the modern woman.', 'Women', '50ml', 'Rose, Floral, Powdery')">
             <div class="product-image">
-                <img src="villain.jpg" alt="Villain">
+                <img src="perfume7.jpg" alt="Rose Velvet Perfume">
                 <span class="product-badge">Bestseller</span>
                 <div class="product-wishlist">
                     <i class="far fa-heart"></i>
                 </div>
                 <div class="product-actions">
-                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('villain.jpg', 'Villain', '₹739', 'A delicate feminine fragrance.', 'Men', '100ml', 'Unflouvered')">Quick View</button>
-                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Villain', '₹739')">Add to Cart</button>
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume7.jpg', 'Rose Velvet', '₹699', 'A delicate feminine fragrance.', 'Women', '50ml', 'Rose, Floral, Powdery')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Rose Velvet', '₹699')">Add to Cart</button>
                 </div>
             </div>
             <div class="product-info">
-                <span class="product-category">Men</span>
-                <h3>Villain</h3>
+                <span class="product-category">Women</span>
+                <h3>Rose Velvet</h3>
                 <div class="product-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -1964,110 +1983,44 @@ button {
                     <span>(78)</span>
                 </div>
                 <div class="product-price">
-                    <span class="current-price">₹739</span>
+                    <span class="current-price">₹699</span>
                 </div>
-                <button class="product-btn" onclick="chooseOrderMethod('Villain', '₹739')">Order Now</button>
+                <button class="product-btn" onclick="chooseOrderMethod('Rose Velvet', '₹699')">Order Now</button>
             </div>
         </div>
 
         <!-- Product 8 -->
-<div class="product-card" onclick="showProductDetail('themen.jpg', 'The Man Company', '₹899', 'An enchanting evening fragrance with deep musk notes. Mysterious, seductive, and perfect for night outs and special occasions.', 'Unisex', '100ml', 'Geranium')">
-    <div class="product-image">
-        <img src="themen.jpg" alt="The Man Company">
-        <span class="product-badge sale">20% OFF</span>
-        <div class="product-wishlist">
-            <i class="far fa-heart"></i>
+        <div class="product-card" onclick="showProductDetail('perfume8.jpg', 'Midnight Musk', '₹899', 'An enchanting evening fragrance with deep musk notes. Mysterious, seductive, and perfect for night outs and special occasions.', 'Unisex', '100ml', 'Musk, Oriental, Woody')">
+            <div class="product-image">
+                <img src="perfume8.jpg" alt="Midnight Musk Perfume">
+                <span class="product-badge sale">20% OFF</span>
+                <div class="product-wishlist">
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('perfume8.jpg', 'Midnight Musk', '₹899', 'An enchanting evening fragrance.', 'Unisex', '100ml', 'Musk, Oriental, Woody')">Quick View</button>
+                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Midnight Musk', '₹899')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <span class="product-category">Unisex</span>
+                <h3>Midnight Musk</h3>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(112)</span>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">₹899</span>
+                    <span class="original-price">₹1124</span>
+                    <span class="discount">20% OFF</span>
+                </div>
+                <button class="product-btn" onclick="chooseOrderMethod('Midnight Musk', '₹899')">Order Now</button>
+            </div>
         </div>
-        <div class="product-actions">
-            <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('themen.jpg', 'The Man Company', '₹899', 'An enchanting evening fragrance.', 'Unisex', '100ml', 'Geranium')">Quick View</button>
-            <button class="add-cart" onclick="event.stopPropagation(); addToCart('The Man Company', '₹899')">Add to Cart</button>
-        </div>
-    </div>
-    <div class="product-info">
-        <span class="product-category">Unisex</span>
-        <h3>The Man Company</h3>
-        <div class="product-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <span>(112)</span>
-        </div>
-        <div class="product-price">
-            <span class="current-price">₹899</span>
-            <span class="original-price">₹1124</span>
-            <span class="discount">20% OFF</span>
-        </div>
-        <button class="product-btn" onclick="chooseOrderMethod('The Man Company', '₹899')">Order Out Of Stock</button>
-    </div>
-</div>
-
-<!-- Product 9 - Extra </div> HATAYA GAYA! -->
-<div class="product-card" onclick="showProductDetail('suga.jpg', 'Suga Pearl', '₹1799', 'An enchanting evening fragrance with deep musk notes. Mysterious, seductive, and perfect for night outs and special occasions.', 'Unisex', '100ml', 'Sunflower')">
-    <div class="product-image">
-        <img src="suga.jpg" alt="Suga Pearl">
-        <span class="product-badge sale">20% OFF</span>
-        <div class="product-wishlist">
-            <i class="far fa-heart"></i>
-        </div>
-        <div class="product-actions">
-            <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('suga.jpg', 'Suga Pearl', '₹1799', 'An enchanting evening fragrance.', 'Unisex', '100ml', 'Sunflower')">Quick View</button>
-            <button class="add-cart" onclick="event.stopPropagation(); addToCart('Suga Pearl', '₹1799')">Add to Cart</button>
-        </div>
-    </div>
-    <div class="product-info">
-        <span class="product-category">Unisex</span>
-        <h3>Suga Pearl</h3>
-        <div class="product-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <span>(112)</span>
-        </div>
-        <div class="product-price">
-            <span class="current-price">₹1799</span>
-            <span class="original-price">₹2194</span>
-            <span class="discount">20% OFF</span>
-        </div>
-        <button class="product-btn" onclick="chooseOrderMethod('Suga Pearl', '₹1799')">Order Out Of Stock</button>
-    </div>
-</div>
-
-<!-- Product 10 - Extra </div> HATAYA GAYA! -->
-<div class="product-card" onclick="showProductDetail('backpack.jpg', 'Blackpack', '₹1999', 'An enchanting evening fragrance with deep musk notes. Mysterious, seductive, and perfect for night outs and special occasions.', 'Unisex', '100ml', 'Rose')">
-    <div class="product-image">
-        <img src="backpack.jpg" alt="Blackpack">
-        <span class="product-badge sale">20% OFF</span>
-        <div class="product-wishlist">
-            <i class="far fa-heart"></i>
-        </div>
-        <div class="product-actions">
-            <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('backpack.jpg', 'Blackpack', '₹1999', 'An enchanting evening fragrance.', 'Unisex', '100ml', 'Rose')">Quick View</button>
-            <button class="add-cart" onclick="event.stopPropagation(); addToCart('Blackpack', '₹1999')">Add to Cart</button>
-        </div>
-    </div>
-    <div class="product-info">
-        <span class="product-category">Unisex</span>
-        <h3>Blackpack</h3>
-        <div class="product-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <span>(112)</span>
-        </div>
-        <div class="product-price">
-            <span class="current-price">₹1999</span>
-            <span class="original-price">₹2599</span>
-            <span class="discount">20% OFF</span>
-        </div>
-        <button class="product-btn" onclick="chooseOrderMethod('Blackpack', '₹1999')">Order</button>
-    </div>
-</div>
 
     </div>
 </section>
@@ -2081,7 +2034,7 @@ button {
     
     <div class="category-grid">
         <div class="category-card" onclick="filterProducts('Men')">
-            <img src="mennn.jpg" alt="Men's Fragrances">
+            <img src="men-perfume.jpg" alt="Men's Fragrances">
             <div class="category-overlay">
                 <div class="category-content">
                     <h3>Men's Collection</h3>
@@ -2092,7 +2045,7 @@ button {
         </div>
         
         <div class="category-card" onclick="filterProducts('Women')">
-            <img src="girl.jpg" alt="Women's Fragrances">
+            <img src="women-perfume.jpg" alt="Women's Fragrances">
             <div class="category-overlay">
                 <div class="category-content">
                     <h3>Women's Collection</h3>
@@ -2107,6 +2060,8 @@ button {
 <!-- Newsletter Section -->
 <section class="newsletter-section">
     <div class="newsletter-content">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for exclusive offers, new arrivals, and fragrance tips delivered to your inbox.</p>
         <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
             <input type="email" placeholder="Enter your email address" required>
             <button type="submit">Subscribe</button>
@@ -2119,9 +2074,12 @@ button {
     <div class="footer-content">
         <div class="footer-brand">
             <a href="#" class="logo">Snix<span>.</span></a>
+            <p>Your destination for premium fragrances. We offer authentic perfumes from top brands at unbeatable prices. Find your signature scent today.</p>
             <div class="social-links">
                 <a href="https://wa.me/919319942411" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://instagram.com/riseup003" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
         
@@ -2130,27 +2088,41 @@ button {
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Shop</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">FAQ</a></li>
             </ul>
         </div>
         
         <div class="footer-column">
             <h4>Customer Service</h4>
             <ul>
-                <li><a href="#">Coustmer service is very important for us if you have any problem regarding us please contact us on social media handle.</a></li>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Track Order</a></li>
             </ul>
         </div>
         
         <div class="footer-column">
             <h4>Contact Us</h4>
             <ul class="contact-info">
-                <li><i class="fas fa-envelope"></i> <span>arise1626@gmail.com</span></li>
+                <li><i class="fas fa-map-marker-alt"></i> <span>123 Fashion Street, Mumbai, India</span></li>
+                <li><i class="fas fa-phone-alt"></i> <span>+91 9319942411</span></li>
+                <li><i class="fas fa-envelope"></i> <span>contact@snixstore.com</span></li>
+                <li><i class="fab fa-whatsapp"></i> <span>+91 9319942411</span></li>
             </ul>
         </div>
     </div>
     
     <div class="footer-bottom">
-        <p>&copy; 2026 Snix. All Rights Reserved. Crafted with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for fragrance lovers</p>
+        <p>&copy; 2024 Snix. All Rights Reserved. Crafted with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for fragrance lovers</p>
         <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+            <i class="fab fa-cc-amex"></i>
             <i class="fab fa-cc-discover"></i>
         </div>
     </div>
@@ -2230,7 +2202,12 @@ button {
                     <i class="fab fa-whatsapp"></i>
                     <span>Order via WhatsApp</span>
                 </button>
-            
+                
+                <button class="order-method-btn instagram" id="instagramBtn">
+                    <i class="fab fa-instagram"></i>
+                    <span>Order via Instagram</span>
+                </button>
+                
                 <button class="order-method-btn website" id="webOrderBtn">
                     <i class="fas fa-shopping-bag"></i>
                     <span>Order on Website</span>
@@ -2735,33 +2712,3 @@ function handleWeb3Submit(event) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
