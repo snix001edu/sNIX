@@ -1062,7 +1062,7 @@ img {
     }
 }
 /* ===== MOBILE VIEW FIX (Product 2 Column) ===== */
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
     .products-grid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
@@ -1088,6 +1088,7 @@ img {
         padding: 10px !important;
     }
 }
+
 
 
 
