@@ -1097,7 +1097,7 @@ img {
 }
 
 /* Chhote phones ke liye (480px aur neeche) */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .products-grid {
         gap: 8px !important;
         padding: 0 8px !important;
@@ -1120,3 +1120,4 @@ img {
         font-size: 9px !important;
     }
 }
+
