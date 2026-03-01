@@ -1751,36 +1751,45 @@ button {
     
     <div class="products-grid" id="productsGrid">
         
-        <!-- Product 1 -->
-        <div class="product-card" onclick="showProductDetail('wildlove.jpg', 'Wildplay', '₹349', 'A powerful and lively aura that captures the essence of adventure and freedom. Perfect for the modern individual who dares to stand out.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">
-            <div class="product-image">
-                <img src="wildlove.jpg" alt="Wildplay Perfume">
-                <span class="product-badge">Bestseller</span>
-                <div class="product-wishlist">
-                    <i class="far fa-heart"></i>
-                </div>
-                <div class="product-actions">
-                    <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('copy.jpg', 'Wildplay', '₹349', 'A powerful and lively aura.', 'Both Genders', '30ml', 'Fresh, Woody, Spicy')">Quick View</button>
-                    <button class="add-cart" onclick="event.stopPropagation(); addToCart('Wildplay', '₹349')">Add to Cart</button>                                                                                                                                                                           
-                </div>
-            </div>                                                                                                                                                                                             
-            <div class="product-info">
-                <span class="product-category">Unisex</span>
-                <h3>Wildplay</h3>
-                <div class="product-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span>(48)</span>
-                </div>
-                <div class="product-price">
-                    <span class="current-price">₹349</span>
-                </div>
-                <button class="product-btn" onclick="chooseOrderMethod('Wildplay', '₹349')">Order Now</button>
-            </div>
+        <!-- Product 2 -->
+<div class="product-card" 
+     id="mysil-nightwear"
+     onclick="showProductDetail('zerotwo.jpg', 'Mysil Woman Nightwear', '₹299', 'An elegant dress for woman. Perfect for good and healthy relationship.', 'Woman', 'All size', 'Nightwaer')">
+
+    <div class="product-image">
+        <img src="zerotwo.jpg" alt="Mysil Woman Nightwear">
+        <span class="product-badge sale">Sale</span>
+        <div class="product-wishlist">
+            <i class="far fa-heart"></i>
         </div>
+        <div class="product-actions">
+            <button class="quick-view" onclick="event.stopPropagation(); showProductDetail('zerotwo.jpg', 'Mysil Woman Nightwear', '₹299', 'An elegant dress for woman.', 'Woman', 'All size', 'Nightwaer')">Quick View</button>
+            <button class="add-cart" onclick="event.stopPropagation(); addToCart('Mysil Woman Nightwear', '₹299')">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="product-info">
+        <span class="product-category">all</span>
+        <h3>Mysil Woman Nightwear</h3>
+
+        <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <span>(32)</span>
+        </div>
+
+        <div class="product-price">
+            <span class="current-price">₹299</span>
+            <span class="original-price">₹599</span>
+            <span class="discount">49% OFF</span>
+        </div>
+
+        <button class="product-btn" onclick="chooseOrderMethod('Mysil Woman Nightwear', '₹299')">Order Now</button>
+    </div>
+</div>
 
         <!-- Product 2 -->
         <div class="product-card" onclick="showProductDetail('beast.jpg', 'Duchman', '₹399', 'An elegant fragrance with notes of Rose Marry that creates a romantic and sophisticated aura. Perfect for special occasions and evening wear.', 'Both Genders', '30ml', 'Rose, Floral, Sweet')">
@@ -2740,6 +2749,7 @@ function handleWeb3Submit(event) {
 
 </body>
 </html>
+
 
 
 
